@@ -117,20 +117,20 @@ Status - Display the state of the code<br>
 
 ###### Note : If we want the display the hidden file then fire command : `ls -a`
 ###### Note : If make changes into the file the follow following process --> 1. Adding changes 2. Commit the changes. There are four status for file :<br>
-1. #untracked: New file that git doesn't yet track 
+1. untracked : New file that git doesn't yet track 
 
-2. #modified : Changed file 
+2. modified : Changed file 
 
-3. #staged : file is ready to be committed 
+3. staged : file is ready to be committed 
 
-4. #unmodified : Unchanged file 
+4. unmodified : Unchanged file 
 
 #### Add and Commit Command<br>
-1. add - Adds new or changed files in your working directories to the git staging area.
+5. add - Adds new or changed files in your working directories to the git staging area.
      `git add < - File name - >` / `git add .` (For adding all changes file)
 ![[Pasted image 20250206122538.png]]
 
-1. Commit - It is the record of change.<br>
+6. Commit - It is the record of change.<br>
      `git commit -m "Some message"`
 	![[Pasted image 20250206122919.png]]
 
@@ -142,7 +142,7 @@ Status - Display the state of the code<br>
  git push - That means i want to push our local code<br>
    
   
-   ### Understanding  #origin in GitHub:<br>
+   ### Understanding  origin in GitHub:<br>
 1. origin - In GitHub (and Git in general), `origin` is the default name for the remote repository from which a local repository was cloned. It serves as a shorthand reference to the remote URL of the repository, making it easier to push and pull changes.
 
 2. **When You Clone a Repository:<br>**
@@ -237,3 +237,68 @@ main - This is name of branch <br>
 
 - Check all branches from a remote - Lists all remote branches.<br>
      `git branch -r`  <br>
+##### NOTE : If we want to fetch the remote repos into the local repos then we are file following commands,
+	`git fetch origin`
+
+
+Differentiate two branch
+- `git diff < other branch name >`
+   Ex  ,  `git diff Shubham`
+   ![[Pasted image 20250206231056.png]]
+
+##### Merging Code commands
+- Way 1
+     - git diff <- branch name ->  To compare commits, branches, file and more
+     - git merge <- branch name ->  To merge two branches
+
+- Way 2
+     - Create a PR (Pull Request) - It lets you tell others about changes you have pushed to a branch in a repository on GitHub.
+         - Go on GitHub and change the branch ignore main and click on pull requests
+
+##### Pull Requests :
+- It is used to fetch and download content from a remote repo and immediately update the local repo to match that content.
+
+     `git pull origin main`
+     ![[Pasted image 20250206232818.png]]
+
+
+##### Resolving Merge Conflicts
+
+- An events that takes place when Git is unable to automatically resolve differences in code between two commits.
+
+![[Pasted image 20250206234910.png]]
+
+Git command for Merge Conflic
+
+![[Pasted image 20250206235056.png]]
+
+
+#### Undoing Changes
+
+- Case 1 :  Staged changes - Used for if we make the changes into the file but I don't make that changes and I only add this file and not commit then we will use `reset` command for undo the changes
+     `git reset <- file name ->`  -  for single file
+	 `git reset`  - for all files
+
+     ![[Pasted image 20250207002344.png]]
+
+
+- Case 2 : Commited changes (for one commit) - Undo the changes after one commit
+     `git reset HEAD ~ 1`
+
+- Case 3 : Commited changes (for many commits) - Undo the changes after many commits
+     `git reset < commit hash>`
+     `git reset --hard <- commit hash ->`
+
+
+`git log` - Used for check the log of commands 
+---
+ⓘ Metadata 
+---
+Title: My Note
+Tags:  #obsidian #notes #git #github
+Author : Shubham Randive
+
+---
+
+
+
