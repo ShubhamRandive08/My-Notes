@@ -177,58 +177,58 @@ main - This is name of branch <br>
 
 ### init command : <br>
 - Used to create the new git repository. And initialize the empty git.
-   `git init`
+   `git init` <br>
 	![[Pasted image 20250206150457.png]]
 
 #### remote commands :<br>
 - Git provides several `git remote` commands to manage remote repositories. Below is a list of commonly used Git remote commands along with their explanations.
 
 - List all remote repositories <br>
-     `git remote -v`
+     `git remote -v` <br>
 	 ![[Pasted image 20250206152741.png]]
 
 - Show detailed information about the origin<br>
-     `git remote show origin`
+     `git remote show origin` <br>
 	 ![[Pasted image 20250206152845.png]]
 
 - Add a new remote repository<br>
-     `git remote add <remote_name> <remote_url>`
-	 Ex , `git remote add origin https://github.com/original/repo.git`
+     `git remote add <remote_name> <remote_url>` <br>
+	 Ex , `git remote add origin https://github.com/original/repo.git` <br>
      ![[Pasted image 20250206153311.png]]
 
 - Remove a remote repository<br>
-     `git remote remove <remote_name>`
-	 Ex , `git remote remove upstream`
+     `git remote remove <remote_name>` <br>
+	 Ex , `git remote remove upstream` <br>
      ![[Pasted image 20250206153433.png]]
 
 - Rename a remote<br>
-     `git remote rename <old_name> <new_name>`
-	 Ex , `git remote rename origin github`
+     `git remote rename <old_name> <new_name>` <br>
+	 Ex , `git remote rename origin github` <br>
      ![[Pasted image 20250206153917.png]]
 
 - Change the URL of remote <br>
-     `git remote set-url <remote_name> <new_url>`
+     `git remote set-url <remote_name> <new_url>` <br>
 	 Ex , `git remote set-url origin https://github.com/new-user/new-repo.git
      ![[Pasted image 20250206154158.png]]
 `
 
 - Fetch change from remote repos - Fetches updates **without merging** them into your working branch.<br>
-     `git fetch <remote_name>`
-	 Ex , `git fetch origin`
+     `git fetch <remote_name>` <br>
+	 Ex , `git fetch origin` <br>
      ![[Pasted image 20250206154657.png]]
 
 - Pull changes from a remote repository - Fetches updates **and merges** them into your current branch.<br>
-     `git pull <remote_name> <branch_name>`
-	 Ex , `git pull origin main`
+     `git pull <remote_name> <branch_name>` <br>
+	 Ex , `git pull origin main` <br>
      ![[Pasted image 20250206154804.png]]
 
 - Push changes to a remote repository - Pushes your local commits to the remote repository.<br>
-     `git push <remote_name> <branch_name>`
-	 Ex , `git push origin main`
+     `git push <remote_name> <branch_name>` <br>
+	 Ex , `git push origin main` <br>
      ![[Pasted image 20250206184221.png]]
 
 - Prune deleted remote branches - Removes references to branches that no longer exist on the remote.<br>
-     `git remote prune <remot<br>e_name>`
+     `git remote prune <remot<br>e_name>`  <br>
 	 Ex , `git remote prune origin`
      
 
@@ -236,4 +236,4 @@ main - This is name of branch <br>
      `git remote get-url origin`
 
 - Check all branches from a remote - Lists all remote branches.<br>
-     `git branch -r`
+     `git branch -r`  <br>
