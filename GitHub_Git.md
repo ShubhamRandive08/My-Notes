@@ -237,3 +237,80 @@ main - This is name of branch <br>
 
 - Check all branches from a remote - Lists all remote branches.<br>
      `git branch -r`  <br>
+#### Branching commands
+- List all branches 
+     `git branch`
+	 ![[Pasted image 20250206221925.png]]
+
+- List remote branches
+     `git branch -r`
+	 ![[Pasted image 20250206222108.png]]
+
+- List all local & remote branches - - Shows both local and remote branches.
+     `git branch -a`
+	 ![[Pasted image 20250206222147.png]]
+
+- Create new branch - This creates a new branch but does **not** switch to it.
+     `git branch <branch_name>`
+	 Ex , `git branch feature-login`
+	 ![[Pasted image 20250206222235.png]]
+
+- **Switch to a branch** (`checkout` method - older)
+     `git checkout <branch_name
+	 Ex , `git checkout feature-login`
+     ![[Pasted image 20250206222334.png]]
+
+- Create and switch to a new branch (`checkout -b` method - older)
+     `git checkout -b <branch_name>`
+	 Ex , `git checkout -b feature-login`
+     ![[Pasted image 20250206222503.png]]
+
+- **Create and switch to a new branch** (`switch` method - recommended)
+     `git switch -c <branch_name>`
+	 Ex , `git switch -c feature-login`
+     ![[Pasted image 20250206222549.png]]
+
+- Delete a local branch
+     `git branch -d <branch_name>`
+	 Ex , `git branch -d feature-login`
+     ![[Pasted image 20250206222821.png]]
+
+- **Force delete a local branch** (use with caution!)
+     `git branch -D <branch_name>`
+	 Ex ,  `git branch -D feature-login`
+     ![[Pasted image 20250206222949.png]]
+
+- Delete a remote branch - This removes the branch from the remote repository.
+     `git push origin --delete <branch_name>`
+	 Ex , `git push origin --delete feature-login`
+     
+
+- Change the branch name
+     `git branch -M < Branch name >`
+	 Ex , `git branch -M main`
+     ![[Pasted image 20250206214517.png]]
+
+- If we want don't re right the `origin main` then we use `-u` ( set upstream)  
+     `git push -u origin main`
+	 Ex ,  `git push -u origin main`
+      ![[Pasted image 20250206220829.png]]
+### Merging and Rebasing
+- Merge a branch into the current branch
+     `git merge <branch_name>`
+	 Ex , `git merge feature-login`
+
+- Rebase a branch - Moves the current branch on top of the latest `main` branch changes.
+     `git rebase <branch_name>`
+	 Ex , `git rebase main`
+
+#### Flow of the create repository
+
+- GitHub Repositories
+     - Clone the repository
+         - Make changes in repos
+             - Add the file
+                 - Commit the changes
+                     - Push the new file
+
+
+    
