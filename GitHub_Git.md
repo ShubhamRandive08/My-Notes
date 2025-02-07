@@ -242,7 +242,6 @@ main - This is name of branch <br>
 	`git fetch origin`
 
 
-	=======
 #### Branching commands
 - List all branches 
      `git branch`
