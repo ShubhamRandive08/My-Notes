@@ -314,3 +314,66 @@ main - This is name of branch <br>
 
 
     
+
+Differentiate two branch
+- `git diff < other branch name >`<br>
+   Ex  ,  `git diff Shubham`<br>
+   ![[Pasted image 20250206231056.png]]
+
+##### Merging Code commands<br>
+- Way 1<br>
+     - git diff <- branch name ->  To compare commits, branches, file and more
+     - git merge <- branch name ->  To merge two branches
+
+- Way 2<br>
+     - Create a PR (Pull Request) - It lets you<br> tell others about changes you have pushed to a branch in a repository on GitHub.
+         - Go on GitHub and change the branch ignore main and click on pull requests
+
+##### Pull Requests :<br>
+- It is used to fetch and download content from a remote repo and immediately update the local repo to match that content.<br>
+
+     `git pull origin main`<br>
+     ![[Pasted image 20250206232818.png]]
+
+
+##### Resolving Merge Conflicts<br>
+
+- An events that takes place when Git is unable to automatically resolve differences in code between two commits.<br>
+
+![[Pasted image 20250206234910.png]]
+
+Git command for Merge Conflic<br>
+
+![[Pasted image 20250206235056.png]]
+
+
+#### Undoing Changes<br>
+
+- Case 1 :  Staged changes - Used for if we make the changes into the file but I don't make that changes and I only add this file and not commit then we will use `reset` command for undo the changes<br>
+     `git reset <- file name ->`  -  for single file<br>
+	 `git reset`  - for all files<br>
+
+     ![[Pasted image 20250207002344.png]]
+
+
+- Case 2 : Commited changes (for one commit) - Undo the changes after one commit<br>
+     `git reset HEAD ~ 1`<br>
+
+- Case 3 : Commited changes (for many commits) - Undo the changes after many commits<br>
+     `git reset < commit hash>`<br>
+     `git reset --hard <- commit hash ->`<br>
+
+
+`git log` - Used for check the log of commands <br>
+---
+ⓘ Metadata <br>
+---
+Title: My Note<br>
+Tags:  #obsidian #notes #git #github<br>
+Author : Shubham Randive<br>
+
+---
+
+
+
+
