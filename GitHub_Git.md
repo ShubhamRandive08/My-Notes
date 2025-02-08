@@ -55,7 +55,7 @@ Adv. of the Git :<br>
 
 If we want to check Git is installed in our system or not file command : git --version<br>
 
-![[Pasted image 20250206095657.png]]
+![[Screenshot 2025-02-06 095644.png]]
 
 
 Hot to download  Git?<br>
@@ -104,68 +104,68 @@ What is different type of Git commands?<br>
 #### Git Clone and Status command :<br>
 Clone - Cloning a repository on our local machine<br>
 	    `git clone <- cloning url ->`
-![[Pasted image 20250206105414.png]]
+![[Screenshot 2025-02-06 105353.png]]
 
 Status - Display the state of the code<br>
 		 `git status`
 1. Nothing to commit <br>
-![[Pasted image 20250206104908.png]]
+![[Screenshot 2025-02-06 104856.png]]
 
-1. If we make some changes into the file <br>
-![[Pasted image 20250206111014.png]]
+2. If we make some changes into the file <br>
+![[Screenshot 2025-02-06 110947.png]]
 
 
 ###### Note : If we want the display the hidden file then fire command : `ls -a`
 ###### Note : If make changes into the file the follow following process --> 1. Adding changes 2. Commit the changes. There are four status for file :<br>
-1. #untracked: New file that git doesn't yet track 
+3. #untracked: New file that git doesn't yet track 
 
-2. #modified : Changed file 
+4. #modified : Changed file 
 
-3. #staged : file is ready to be committed 
+5. #staged : file is ready to be committed 
 
-4. #unmodified : Unchanged file 
+6. #unmodified : Unchanged file 
 
 #### Add and Commit Command<br>
-1. add - Adds new or changed files in your working directories to the git staging area.
+7. add - Adds new or changed files in your working directories to the git staging area.
      `git add < - File name - >` / `git add .` (For adding all changes file)
-![[Pasted image 20250206122538.png]]
+![[Screenshot 2025-02-06 122527.png]]
 
-1. Commit - It is the record of change.<br>
+8. Commit - It is the record of change.<br>
      `git commit -m "Some message"`
-	![[Pasted image 20250206122919.png]]
+	![[Screenshot 2025-02-06 122907.png]]
 
 #### Push Command<br>
  push - It is used for upload local repo content to remote repo<br>
      `git push origin main`
-	 ![[Pasted image 20250206123422.png]]
+	 ![[Screenshot 2025-02-06 123357.png]]
 
  git push - That means i want to push our local code<br>
    
   
    ### Understanding  #origin in GitHub:<br>
-1. origin - In GitHub (and Git in general), `origin` is the default name for the remote repository from which a local repository was cloned. It serves as a shorthand reference to the remote URL of the repository, making it easier to push and pull changes.
+9. origin - In GitHub (and Git in general), `origin` is the default name for the remote repository from which a local repository was cloned. It serves as a shorthand reference to the remote URL of the repository, making it easier to push and pull changes.
 
-2. **When You Clone a Repository:<br>**
+10. **When You Clone a Repository:<br>**
     
     - If you run:<br>
         bash<br>
         `git clone https://github.com/user/repo.git`
         
     - Git automatically assigns the name `origin` to the remote repository (`https://github.com/user/repo.git`).
-3. **Viewing the Remote URL:<br>**
+11. **Viewing the Remote URL:<br>**
     - To check which remote repository is named `origin`, run:
         `git remote -v`
     - Example output:
         `origin  https://github.com/user/repo.git (fetch) origin  https://github.com/user/repo.git (push)`
         
-4. **Using `origin` in Commands:**<br>
+12. **Using `origin` in Commands:**<br>
     - **Pull changes from GitHub:**
         `git pull origin main`
         
     - **Push changes to GitHub:**
         `git push origin main`
         
-5. **Changing or Adding a Remote URL:**<br>
+13. **Changing or Adding a Remote URL:**<br>
     
     - If you need to change the `origin` URL:<br>
         `git remote set-url origin https://github.com/new-user/new-repo.git`
@@ -178,54 +178,54 @@ main - This is name of branch <br>
 ### init command : <br>
 - Used to create the new git repository. And initialize the empty git.
    `git init` <br>
-	![[Pasted image 20250206150457.png]]
+	![[Screenshot 2025-02-06 150440.png]]
 
 #### remote commands :<br>
 - Git provides several `git remote` commands to manage remote repositories. Below is a list of commonly used Git remote commands along with their explanations.
 
 - List all remote repositories <br>
      `git remote -v` <br>
-	 ![[Pasted image 20250206152741.png]]
+	 ![[Screenshot 2025-02-06 152703.png]]
 
 - Show detailed information about the origin<br>
      `git remote show origin` <br>
-	 ![[Pasted image 20250206152845.png]]
+	 ![[Screenshot 2025-02-06 152827.png]]
 
 - Add a new remote repository<br>
      `git remote add <remote_name> <remote_url>` <br>
 	 Ex , `git remote add origin https://github.com/original/repo.git` <br>
-     ![[Pasted image 20250206153311.png]]
+     ![[Screenshot 2025-02-06 153158.png]]
 
 - Remove a remote repository<br>
      `git remote remove <remote_name>` <br>
 	 Ex , `git remote remove upstream` <br>
-     ![[Pasted image 20250206153433.png]]
+     ![[Screenshot 2025-02-06 153423.png]]
 
 - Rename a remote<br>
      `git remote rename <old_name> <new_name>` <br>
 	 Ex , `git remote rename origin github` <br>
-     ![[Pasted image 20250206153917.png]]
+     ![[Screenshot 2025-02-06 153901.png]]
 
 - Change the URL of remote <br>
      `git remote set-url <remote_name> <new_url>` <br>
 	 Ex , `git remote set-url origin https://github.com/new-user/new-repo.git
-     ![[Pasted image 20250206154158.png]]
+     ![[Screenshot 2025-02-06 154143.png]]
 `
 
 - Fetch change from remote repos - Fetches updates **without merging** them into your working branch.<br>
      `git fetch <remote_name>` <br>
 	 Ex , `git fetch origin` <br>
-     ![[Pasted image 20250206154657.png]]
+     ![[Screenshot 2025-02-06 154646.png]]
 
 - Pull changes from a remote repository - Fetches updates **and merges** them into your current branch.<br>
      `git pull <remote_name> <branch_name>` <br>
 	 Ex , `git pull origin main` <br>
-     ![[Pasted image 20250206154804.png]]
+     ![[Screenshot 2025-02-06 154750.png]]
 
 - Push changes to a remote repository - Pushes your local commits to the remote repository.<br>
      `git push <remote_name> <branch_name>` <br>
 	 Ex , `git push origin main` <br>
-     ![[Pasted image 20250206184221.png]]
+     ![[Screenshot 2025-02-06 184203.png]]
 
 - Prune deleted remote branches - Removes references to branches that no longer exist on the remote.<br>
      `git remote prune <remot<br>e_name>`  <br>
@@ -240,45 +240,45 @@ main - This is name of branch <br>
 #### Branching commands
 - List all branches 
      `git branch`
-	 ![[Pasted image 20250206221925.png]]
+	 ![[Screenshot 2025-02-06 214400.png]]
 
 - List remote branches
      `git branch -r`
-	 ![[Pasted image 20250206222108.png]]
+	 ![[Screenshot 2025-02-06 222058.png]]
 
 - List all local & remote branches - - Shows both local and remote branches.
      `git branch -a`
-	 ![[Pasted image 20250206222147.png]]
+	 ![[Screenshot 2025-02-06 222135.png]]
 
 - Create new branch - This creates a new branch but does **not** switch to it.
      `git branch <branch_name>`
 	 Ex , `git branch feature-login`
-	 ![[Pasted image 20250206222235.png]]
+	 ![[Screenshot 2025-02-06 222224.png]]
 
 - **Switch to a branch** (`checkout` method - older)
      `git checkout <branch_name
 	 Ex , `git checkout feature-login`
-     ![[Pasted image 20250206222334.png]]
+     ![[Screenshot 2025-02-06 222324.png]]
 
 - Create and switch to a new branch (`checkout -b` method - older)
      `git checkout -b <branch_name>`
 	 Ex , `git checkout -b feature-login`
-     ![[Pasted image 20250206222503.png]]
+     ![[Screenshot 2025-02-06 222454.png]]
 
 - **Create and switch to a new branch** (`switch` method - recommended)
      `git switch -c <branch_name>`
 	 Ex , `git switch -c feature-login`
-     ![[Pasted image 20250206222549.png]]
+     ![[Screenshot 2025-02-06 222538.png]]
 
 - Delete a local branch
      `git branch -d <branch_name>`
 	 Ex , `git branch -d feature-login`
-     ![[Pasted image 20250206222821.png]]
+     ![[Screenshot 2025-02-06 222811.png]]
 
 - **Force delete a local branch** (use with caution!)
      `git branch -D <branch_name>`
 	 Ex ,  `git branch -D feature-login`
-     ![[Pasted image 20250206222949.png]]
+     ![[Screenshot 2025-02-06 222926.png]]
 
 - Delete a remote branch - This removes the branch from the remote repository.
      `git push origin --delete <branch_name>`
@@ -288,12 +288,12 @@ main - This is name of branch <br>
 - Change the branch name
      `git branch -M < Branch name >`
 	 Ex , `git branch -M main`
-     ![[Pasted image 20250206214517.png]]
+
 
 - If we want don't re right the `origin main` then we use `-u` ( set upstream)  
      `git push -u origin main`
 	 Ex ,  `git push -u origin main`
-      ![[Pasted image 20250206220829.png]]
+    
 ### Merging and Rebasing
 - Merge a branch into the current branch
      `git merge <branch_name>`
@@ -318,7 +318,7 @@ main - This is name of branch <br>
 Differentiate two branch
 - `git diff < other branch name >`<br>
    Ex  ,  `git diff Shubham`<br>
-   ![[Pasted image 20250206231056.png]]
+   ![[Screenshot 2025-02-06 231034.png]]
 
 ##### Merging Code commands<br>
 - Way 1<br>
@@ -333,18 +333,18 @@ Differentiate two branch
 - It is used to fetch and download content from a remote repo and immediately update the local repo to match that content.<br>
 
      `git pull origin main`<br>
-     ![[Pasted image 20250206232818.png]]
+     ![[Screenshot 2025-02-06 232804.png]]
 
 
 ##### Resolving Merge Conflicts<br>
 
 - An events that takes place when Git is unable to automatically resolve differences in code between two commits.<br>
 
-![[Pasted image 20250206234910.png]]
+![[Screenshot 2025-02-06 234900.png]]
 
 Git command for Merge Conflic<br>
 
-![[Pasted image 20250206235056.png]]
+![[Screenshot 2025-02-06 235044.png]]
 
 
 #### Undoing Changes<br>
@@ -353,7 +353,7 @@ Git command for Merge Conflic<br>
      `git reset <- file name ->`  -  for single file<br>
 	 `git reset`  - for all files<br>
 
-     ![[Pasted image 20250207002344.png]]
+     ![[Screenshot 2025-02-07 002321.png]]
 
 
 - Case 2 : Commited changes (for one commit) - Undo the changes after one commit<br>
