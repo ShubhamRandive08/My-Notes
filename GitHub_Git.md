@@ -209,7 +209,7 @@ main - This is name of branch <br>
 - Change the URL of remote <br>
      `git remote set-url <remote_name> <new_url>` <br>
 	 Ex , `git remote set-url origin https://github.com/new-user/new-repo.git
-     ![[Screenshot 2025-02-06 154143.png]]
+     ![4143](/Image/4143.png)
 `
 
 - Fetch change from remote repos - Fetches updates **without merging** them into your working branch.<br>
@@ -353,7 +353,7 @@ Git command for Merge Conflic<br>
      `git reset <- file name ->`  -  for single file<br>
 	 `git reset`  - for all files<br>
 
-     ![[Screenshot 2025-02-07 002321.png]]
+     ![[Screenshot 2025-02-07 002321.png]] 
 
 
 - Case 2 : Commited changes (for one commit) - Undo the changes after one commit<br>
