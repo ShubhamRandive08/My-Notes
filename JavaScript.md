@@ -128,3 +128,441 @@ O/P  :
 	Person(name : 'Shubham', age = 21)
 
 ```
+
+##### Class And Objects :
+- For interview point of view classes and object is must important topic.
+
+##### Objects And Prototypes :
+- A JavaScript object is an entity having state and behavior ( Properties [Variable] and method [Function] )
+- JS objects have a special property called prototype. We can set prototype using --proto--
+- An **object** is a collection of key-value pairs, where the keys are strings (or Symbols) and the values can be any data type, including functions.
+
+- Object is the blueprint of the class
+
+#### **Creating Objects**
+
+Objects can be created in multiple ways:
+     ` let person = { name : "Alice", age : 25, greet : function (){ console.log("Hello, " + this.name); } };`
+
+Using the `new Object()` Constructor : 
+    `let obj = new Object();obj.name = "Bob";`
+
+Using a Constructor Function :
+     `function Person(name, age) {
+          `this.name = name;`
+         `this.age = age;`
+        `}`
+
+        `let p1 = new Person("Charlie", 30);`
+        `console.log(p1.name); // Output: Charlie
+
+Using class (ES6) :
+`class Person {`
+  `constructor(name, age) {`
+    `this.name = name;`
+    `this.age = age;`
+  `}`
+`}`
+
+`let p2 = new Person("David", 40);`
+`console.log(p2.name); // Output: David`
+
+##### Prototype :
+- Every JavaScript object has an internal property called `[[Prototype]]`, which refers to another object from which it can inherit properties.
+
+```function Animal(name) {
+  this.name = name;
+}
+
+// Adding method to prototype
+Animal.prototype.speak = function () {
+  console.log(this.name + " makes a sound");
+};
+
+let dog = new Animal("Dog");
+dog.speak(); // Output: Dog makes a sound
+
+console.log(dog.__proto__ === Animal.prototype); // true
+
+```
+
+- Objects in JavaScript store data as key-value pairs.
+- Prototypes allow objects to inherit properties and methods from other objects.
+- The prototype chain is used to look up properties and methods when they are not found directly on an object.
+- The `__proto__` property references an object's prototype, while functions have a `prototype` property used for inheritance.
+
+```Copy
+	const student = {
+		fullName : "Shubham Balavant Randive",
+		marks : 91.80,
+		printMarks : function () {
+			 console.log("Marks : ", this.marks);
+		},
+	}
+```
+
+
+- Object can also ends with the qama. ( , )
+
+![](/Image/01.png)
+
+
+Prototype is always a `Object` which holds various values like,
+
+In JS, the type of can be object.
+Ex,
+     ![](/Image/02.png)
+
+##### Methods of declare the function in an objects
+```Copy
+// Method No. 1
+	const employee = {
+		calcTax1() {
+			console.log("Tax Rate is 5%")
+		},
+
+// Methd No. 2
+		calcTax2 : function() {
+			console.log("Tax Rate is 10%");
+		}
+	}
+```
+
+Note : We can also define the protype of object manually,
+Ex, 
+
+``` Copy
+const emp = {
+    calcTax(a) {
+
+        console.log(a * 18 / 100)
+
+    },
+
+    calcTax2 : function (a) {
+
+        console.log(a * 20 / 100)
+
+    }
+
+}
+
+const Shubham = {
+
+    salary1 : 20000,
+
+    salary2 : 50000,
+
+}
+Shubham.__proto__ = emp
+```
+
+![](/Image/03.png)
+
+
+#### Classes : 
+- Class is a program-code template for creating objects.
+
+- Those objects will have some state (variables) and some behavior (functions) inside it.
+
+- In JS, classes are a way to create reusable blueprints for objects. They were introduced in ES (ECMAScript 2015) as a more structured way to implements object-oriented programming ( OOP ) compared to constructor functions and prototypes
+
+- Classes can be provide the template for the create the object..
+
+- Class is the Hard Copy of the objects.
+
+Syntax ,
+```Copy
+	class Class_Name {
+		construcotr() {............}
+		myMethod() {.............}
+
+		let obj_name = new Class_Name();
+	}
+```
+
+Ex ,
+
+```
+class Shubham {
+
+    constructor(name, age){
+
+        this.name = name;
+
+        this.age = age
+
+    }
+    dispaly(){
+
+        console.log('The name of the student : ' + this.name);
+
+        console.log('The age of the student : '  + this.age)
+
+    }
+}
+
+let obj = new Shubham('Shubham', 30);
+
+  
+
+obj.dispaly();
+```
+
+
+#### Constructor :
+- If we can't create any constructor, it is automatically invoked by `new` 
+- Its also defined with the `constructor` keyword in JS.
+- It is automatically called when the object of class can be created.
+- Specifically it is used for the initialize the object.
+- A **constructor** in JavaScript is a special function used to create and initialize objects. It is primarily used inside **classes** or as a standalone function to set up new instances.
+
+Syntax for Constructor Creation,
+	constructor ( ){
+		variables
+        methods 
+	}
+
+
+###### Before ES6 introduced classes, JavaScript used **constructor functions** to create objects.
+
+```Copy
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+let person1 = new Person("Alice", 25);
+console.log(person1.name); // Output: Alice
+console.log(person1.age); // Output: 25
+
+```
+
+![](/Image/04.png)
+
+
+Constructor creating in JS,
+   Ex , 
+```Copy
+class Demo{
+
+    constructor(){
+
+        console.log('Initialize the objects.')
+
+    }
+
+}
+
+let o1 = new Demo();
+
+let o2 = new Demo();
+```
+
+Output : 
+
+![](/Image/05.png)
+
+##### Constructor with arguments
+```Copy
+class Demo{
+
+    constructor(name){
+        console.log('The name of student : ' + name)
+    }
+
+}
+
+let o1 = new Demo('Shubham');
+
+let o2 = new Demo('Rohan');
+```
+
+![](/Image/06.png)
+
+
+#### Inheritance in JS 
+- Inheritance in JS is passing down properties and methods from parent class to child class.
+
+- It is also used for the code reusability.
+
+- If child and parent have same method, child method will the used ( Method overriding )
+
+- In JS for inheritance used the `extends` keyword.
+
+- Inheritance is a fundamental concept in object-oriented programming (OOP) that allows one object to acquire the properties and methods of another. JavaScript implements inheritance primarily through **prototypes** and **ES6 classes**.
+
+
+- Syntax ,
+
+```Copy
+class Parent {
+
+}
+
+class Child extends Parent {
+
+}
+```
+
+Prototype based Inheritance :
+
+```
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function() {
+  console.log(`${this.name} makes a noise.`);
+};
+
+const dog = new Animal("Buddy");
+dog.speak(); // Output: Buddy makes a noise.
+
+```
+
+Example of the class inheritance
+
+```
+class Animal {
+	eat(){
+		console.log("Its animal is eating.")
+	}
+}
+
+class Dog extends Animal{
+	bark(){
+		console.log("The Dog is barking.")
+	}
+}
+
+let obj = new Dog();
+obj.eat();
+```
+
+Ex ,
+
+```
+class Person {
+	eat() {
+		console.log("Eat")
+	}
+
+	sleep() {
+		console.log("Sleep")
+	}
+
+	work() {
+		console.log("Do nothing")
+	}
+}
+
+class Doctor extends Person {
+	work(){
+		console.log("Treat Patints");
+	}
+}
+
+class Engineer extends Person {
+	work(){
+		console.log("Solve Problems and Building something")
+	}
+}
+
+```
+
+#### Super Keyword :
+- The super keyword is used to call the constructor of its parent class to access the parents properties and methods.
+
+- With using the `super()` method we can access the parent constructor.
+
+- With using `super` keyword we can access the parent class method inside the child class method
+
+
+Ex , 
+```
+class Demo{
+
+    constructor(){
+
+        console.log("Parent Constucotr")
+
+    }
+
+    fun1(){
+
+        console.log("Information of Demo")
+
+    }
+
+}
+
+class Child extends Demo{
+
+    constructor(){
+
+        super()
+
+        console.log("Child constructor")
+
+    }
+
+  
+
+    funChild(){
+
+        super.fun1();
+
+        console.log("Inofrmation of child")
+
+    }
+
+}
+
+let obj = new Child()
+
+obj.funChild()
+```
+
+
+Output : 
+
+![](/Image/07.png)
+
+##### Practice Questions : 
+Let's Practice ,
+	1. Qs. You are creating website for your collage. Create a class User with 2 properties, name and email. It also has a method called viewData() that allows user to view website data.
+
+```
+class User{
+
+    constructor(name,email){
+
+        this.name = name
+
+        this.email = email
+
+    }
+
+    viewData(){
+
+        console.log("The name of the student : " + this.name)
+
+        console.log("The email of student : " + this.email)
+
+    }
+
+}
+
+let obj = new User("Shubham", 'srandive245@gmail.com')
+
+obj.viewData()
+```
+
+Output :
+
+![](/Image/07.png)
+
+2.Create a new class called Admin which inherits from User. Add a new method called editData to Admin that allows it to website data.
+
+
