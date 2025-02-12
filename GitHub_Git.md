@@ -140,7 +140,7 @@ Status - Display the state of the code<br>
 
 #### Push Command<br>
  push - It is used for upload local repo content to remote repo<br>
-     `git push origin main`
+     `git push origin main`<br>
 	 ![](/Image/3357.png)
 
 
@@ -154,173 +154,173 @@ Status - Display the state of the code<br>
     
     - If you run:<br>
         bash<br>
-        `git clone https://github.com/user/repo.git`
+        `git clone https://github.com/user/repo.git`<br>
         
-    - Git automatically assigns the name `origin` to the remote repository (`https://github.com/user/repo.git`).
+    - Git automatically assigns the name `origin` to the remote repository (`https://github.com/user/repo.git`).<br>
 11. **Viewing the Remote URL:<br>**
     - To check which remote repository is named `origin`, run:
         `git remote -v`
     - Example output:
-        `origin  https://github.com/user/repo.git (fetch) origin  https://github.com/user/repo.git (push)`
+        `origin  https://github.com/user/repo.git (fetch) origin  https://github.com/user/repo.git (push)`<br>
         
 12. **Using `origin` in Commands:**<br>
     - **Pull changes from GitHub:**
-        `git pull origin main`
+        `git pull origin main`<br>
         
     - **Push changes to GitHub:**
-        `git push origin main`
+        `git push origin main`<br>
         
 13. **Changing or Adding a Remote URL:**<br>
     
     - If you need to change the `origin` URL:<br>
-        `git remote set-url origin https://github.com/new-user/new-repo.git`
+        `git remote set-url origin https://github.com/new-user/new-repo.git`<br>
         
     - To add a new remote (e.g., `upstream` for a forked repository):<br>
-        `git remote add upstream https://github.com/original-repo.git`
+        `git remote add upstream https://github.com/original-repo.git`<br>
 
 main - This is name of branch <br>
 
 ### init command : <br>
 - Used to create the new git repository. And initialize the empty git.
    `git init` <br>
-	![[Screenshot 2025-02-06 150440.png]]
+	![[Screenshot 2025-02-06 150440.png]]<br>
 
 #### remote commands :<br>
 - Git provides several `git remote` commands to manage remote repositories. Below is a list of commonly used Git remote commands along with their explanations.
 
 - List all remote repositories <br>
      `git remote -v` <br>
-	 ![](/Image/2703.png)
+	 ![](/Image/2703.png)<br>
 
 
 - Show detailed information about the origin<br>
      `git remote show origin` <br>
-	 ![](/Image/2827.png)
+	 ![](/Image/2827.png)<br>
 
 
 - Add a new remote repository<br>
      `git remote add <remote_name> <remote_url>` <br>
 	 Ex , `git remote add origin https://github.com/original/repo.git` <br>
-     ![](/Image/3158.png)
+     ![](/Image/3158.png)<br>
 
 
 - Remove a remote repository<br>
      `git remote remove <remote_name>` <br>
 	 Ex , `git remote remove upstream` <br>
-     ![](/Image/3423.png)
+     ![](/Image/3423.png)<br>
 
 
 - Rename a remote<br>
      `git remote rename <old_name> <new_name>` <br>
 	 Ex , `git remote rename origin github` <br>
-     ![](/Image/3901.png)
+     ![](/Image/3901.png)<br>
 
 
 
 - Change the URL of remote <br>
      `git remote set-url <remote_name> <new_url>` <br>
-	 Ex , `git remote set-url origin https://github.com/new-user/new-repo.git
+	 Ex , `git remote set-url origin https://github.com/new-user/new-repo.git<br>
 
-     ![MyImage](/Image/4143.png)
+     ![MyImage](/Image/4143.png)<br>
 `
 
 - Fetch change from remote repos - Fetches updates **without merging** them into your working branch.<br>
      `git fetch <remote_name>` <br>
 	 Ex , `git fetch origin` <br>
-     ![](/Image/4646.png)
+     ![](/Image/4646.png)<br>
 
 
 - Pull changes from a remote repository - Fetches updates **and merges** them into your current branch.<br>
      `git pull <remote_name> <branch_name>` <br>
 	 Ex , `git pull origin main` <br>
-     ![](/Image/4750.png)
+     ![](/Image/4750.png)<br>
 
 
 - Push changes to a remote repository - Pushes your local commits to the remote repository.<br>
      `git push <remote_name> <branch_name>` <br>
 	 Ex , `git push origin main` <br>
-     ![](/Image/4203.png)
+     ![](/Image/4203.png)<br>
 
 - Prune deleted remote branches - Removes references to branches that no longer exist on the remote.<br>
      `git remote prune <remot<br>e_name>`  <br>
-	 Ex , `git remote prune origin`
+	 Ex , `git remote prune origin`<br>
      
 
 - Check the default upstream branch - Shows the URL of the `origin` remote.<br>
-     `git remote get-url origin`
+     `git remote get-url origin`<br>
 
 - Check all branches from a remote - Lists all remote branches.<br>
      `git branch -r`  <br>
 #### Branching commands
-- List all branches 
-     `git branch`
-	 ![](/Image/4400.png)
+- List all branches <br>
+     `git branch`<br>
+	 ![](/Image/4400.png)<br>
 
 
 - List remote branches
-     `git branch -r`
-	 ![](/Image/2058.png)
+     `git branch -r`<br>
+	 ![](/Image/2058.png)<br>
 
 
-- List all local & remote branches - - Shows both local and remote branches.
-     `git branch -a`
+- List all local & remote branches - - Shows both local and remote branches.<br>
+     `git branch -a`<br>
 	 ![](/Image/2135.png)
 
 
-- Create new branch - This creates a new branch but does **not** switch to it.
-     `git branch <branch_name>`
-	 Ex , `git branch feature-login`
-	 ![](/Image/2224.png)
+- Create new branch - This creates a new branch but does **not** switch to it.<br>
+     `git branch <branch_name>`<br>
+	 Ex , `git branch feature-login`<br>
+	 ![](/Image/2224.png)<br>
 
 
 - **Switch to a branch** (`checkout` method - older)
      `git checkout <branch_name
-	 Ex , `git checkout feature-login`
-     ![](/Image/2324.png)
+	 Ex , `git checkout feature-login`<br>
+     ![](/Image/2324.png)<br>
 
 
 - Create and switch to a new branch (`checkout -b` method - older)
-     `git checkout -b <branch_name>`
-	 Ex , `git checkout -b feature-login`
-     ![](/Image/2454.png)
+     `git checkout -b <branch_name>`<br>
+	 Ex , `git checkout -b feature-login`<br>
+     ![](/Image/2454.png)<br>
 
 
-- **Create and switch to a new branch** (`switch` method - recommended)
-     `git switch -c <branch_name>`
-	 Ex , `git switch -c feature-login`
-     ![](/Image/2538.png)
+- **Create and switch to a new branch** (`switch` method - recommended)<br>
+     `git switch -c <branch_name>`<br>
+	 Ex , `git switch -c feature-login`<br>
+     ![](/Image/2538.png)<br>
 
 
-- Delete a local branch
-     `git branch -d <branch_name>`
-	 Ex , `git branch -d feature-login`
-     ![](/Image/2811.png)
+- Delete a local branch<br>
+     `git branch -d <branch_name>`<br>
+	 Ex , `git branch -d feature-login`<br>
+     ![](/Image/2811.png)<br>
 
 
-- **Force delete a local branch** (use with caution!)
-     `git branch -D <branch_name>`
-	 Ex ,  `git branch -D feature-login`
-     ![](/Image/2926.png)
+- **Force delete a local branch** (use with caution!)<br>
+     `git branch -D <branch_name>`<br>
+	 Ex ,  `git branch -D feature-login`<br>
+     ![](/Image/2926.png)<br>
 
 
 - Delete a remote branch - This removes the branch from the remote repository.
-     `git push origin --delete <branch_name>`
-	 Ex , `git push origin --delete feature-login`
+     `git push origin --delete <branch_name>`<br>
+	 Ex , `git push origin --delete feature-login`<br>
      
 
-- Change the branch name
-     `git branch -M < Branch name >`
-	 Ex , `git branch -M main`
+- Change the branch name<br>
+     `git branch -M < Branch name >`<br>
+	 Ex , `git branch -M main`<br>
 
 
-- If we want don't re right the `origin main` then we use `-u` ( set upstream)  
-     `git push -u origin main`
-	 Ex ,  `git push -u origin main`
+- If we want don't re right the `origin main` then we use `-u` ( set upstream)  <br>
+     `git push -u origin main`<br>
+	 Ex ,  `git push -u origin main`<br>
     
-### Merging and Rebasing
-- Merge a branch into the current branch
-     `git merge <branch_name>`
-	 Ex , `git merge feature-login`
+### Merging and Rebasing<br>
+- Merge a branch into the current branch<br>
+     `git merge <branch_name>`<br>
+	 Ex , `git merge feature-login`<br>
 
 - Rebase a branch - Moves the current branch on top of the latest `main` branch changes.
      `git rebase <branch_name>`
@@ -341,23 +341,23 @@ main - This is name of branch <br>
 Differentiate two branch
 - `git diff < other branch name >`<br>
    Ex  ,  `git diff Shubham`<br>
-   ![](/Image/1034.png)
+   ![](/Image/1034.png)<br>
 
 
 ##### Merging Code commands<br>
 - Way 1<br>
-     - git diff <- branch name ->  To compare commits, branches, file and more
-     - git merge <- branch name ->  To merge two branches
+     - git diff <- branch name ->  To compare commits, branches, file and more<br>
+     - git merge <- branch name ->  To merge two branches<br>
 
 - Way 2<br>
-     - Create a PR (Pull Request) - It lets you<br> tell others about changes you have pushed to a branch in a repository on GitHub.
-         - Go on GitHub and change the branch ignore main and click on pull requests
+     - Create a PR (Pull Request) - It lets you<br> tell others about changes you have pushed to a branch in a repository on GitHub.<br>
+         - Go on GitHub and change the branch ignore main and click on pull requests<br>
 
 ##### Pull Requests :<br>
 - It is used to fetch and download content from a remote repo and immediately update the local repo to match that content.<br>
 
      `git pull origin main`<br>
-     ![](/Image/2804.png)
+     ![](/Image/2804.png)<br>
 
 
 
@@ -365,7 +365,7 @@ Differentiate two branch
 
 - An events that takes place when Git is unable to automatically resolve differences in code between two commits.<br>
 
-![](/Image/4900.png)
+![](/Image/4900.png)<br>
 
 
 Git command for Merge Conflic<br>
@@ -380,8 +380,7 @@ Git command for Merge Conflic<br>
      `git reset <- file name ->`  -  for single file<br>
 	 `git reset`  - for all files<br>
 
-     ![](/Image/2321.png)
-
+     ![](/Image/2321.png)<br>
 
 
 - Case 2 : Commited changes (for one commit) - Undo the changes after one commit<br>
