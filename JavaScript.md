@@ -566,3 +566,70 @@ Output :
 2.Create a new class called Admin which inherits from User. Add a new method called editData to Admin that allows it to website data.
 
 
+```
+class User {
+
+    constructor(name, email) {
+
+      this.name = name;
+
+      this.email = email;
+
+    }
+
+    displayInfo() {
+
+      console.log(`User: ${this.name}, Email: ${this.email}`);
+
+    }
+
+  }
+
+  class Admin extends User {
+
+    constructor(name, email) {
+
+      super(name, email);
+
+    }
+
+    editData(data) {
+
+      console.log(`Editing website data: ${data}`);
+
+    }
+
+  }
+
+  // Example usage:
+
+  const admin = new Admin("Alice", "alice@example.com");
+
+  admin.displayInfo();
+
+  admin.editData("Updated site content");
+```
+
+![](/Image/09.png)
+
+##### Exception Handling in JS : 
+- You can also use the `try - catch` block for handling the error or exception in JS.
+- You can also use the `finally` and `throw` to handle the error
+
+Ex, 
+```
+try {
+  let result = 10 / 0;  // No error, but may be unintended behavior
+  console.log(result);
+
+  let a = undefinedVariable; // This will throw an error
+} catch (error) {
+  console.error("An error occurred:", error.message);
+} finally {
+  console.log("This will always run, regardless of errors.");
+}
+
+```
+
+![](/Image/10.png)
+
