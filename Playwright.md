@@ -1,3 +1,5 @@
+
+* This file also present on [Github](Github_Git) *
 ##### Get Started with Playwright 
 1.1 What is Playwright and Advantages, Limitations
 1.2 Playwright Architecture
@@ -20,6 +22,7 @@
 1.19 Run Test in Headless mode
 1.20 Run Test in UI mode
 1.21 Run Specific Spec file
+
 1.22 Run Test On Different Browser
 1.23 Codegen - Record and Play Test
 
@@ -70,6 +73,8 @@
   ##### Playwright VS Cypress
 
 ![](/Image/DiffBetPlaywright_Cypress.png)
+
+
 
 
 ##### Playwright VS Selenium WebDriver
@@ -283,3 +288,49 @@ const context = await browser.newContext();
 const newPage = await context.newPage();
 await newPage.goto('https://example.com');
 ```
+
+##### How to install Playwright using Command prompt
+- First time open the CMD.
+Step 1 - Enter '`npm init playwright@latest`
+Step 2 - Select Playwright configurations
+	Then wait for some time to intall playwright
+
+![](/Image/play_installation_in_CMD.png)
+
+
+1.19 Run Test in Headless mode
+- Playwright Test Report
+
+In Terminal :
+
+```
+npx playwright test - For running the all test which is present in test folder
+
+npx playwright show-report - For show the report into the HTML format
+```
+
+![](/Image/TestRunsInTerminal.png)
+
+#### If we want to run the test cases in headless mode then simple change the value of `headless` key in `playwright.config.js` file make it `flase` .
+
+In Command Prompt :
+
+```
+npx playwright test - For running the all test which is present in test folder
+
+npx playwright show-report - For show the report into the HTML format
+```
+
+
+![](/Image/TestRunsInCMD.png)
+
+
+
+1.20 Run the Test in Headed Mode : ( In terminal OR CMD )
+
+```
+npx playwright test --headed - For running the all test which is present in test folder
+
+npx playwright show-report - For show the report into the HTML format
+```
+
