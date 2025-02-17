@@ -1,5 +1,5 @@
 
-* This file also present on [Github](Github_Git) *
+* This file also present on [GitHub](GitHub_Git.md)  URL FOR NOTES - [URL](https://github.com/ShubhamRandive08/My-Notes.git) URL FOR CODE - [URL](https://github.com/ShubhamRandive08/Playwright_Tests.git)*
 ##### Get Started with Playwright 
 1.1 What is Playwright and Advantages, Limitations
 1.2 Playwright Architecture
@@ -22,7 +22,6 @@
 1.19 Run Test in Headless mode
 1.20 Run Test in UI mode
 1.21 Run Specific Spec file
-
 1.22 Run Test On Different Browser
 1.23 Codegen - Record and Play Test
 
@@ -333,4 +332,28 @@ npx playwright test --headed - For running the all test which is present in test
 
 npx playwright show-report - For show the report into the HTML format
 ```
+
+
+1.21 Run specific Playwright Spec File
+- Firstly Go on Terminal - And run following command 
+```
+npx playwright test --headed demo.spec.js
+```
+
+
+
+
+
+
+
+
+
+---
+ⓘ Metadata <br>
+--
+Title: My Note<br>
+Tags:  #playwright #automation<br>
+Author : Shubham Randive<br>
+
+---
 

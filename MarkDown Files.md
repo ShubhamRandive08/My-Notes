@@ -224,4 +224,18 @@ map(), reduce() and filter(), foreach() methods in JS.
 		
 		console.log(sum)
 	```
-	
+
+What is linting ?
+Linting issues refer to problems detected by **a linter**, a tool that analyzes your code for potential errors, formatting inconsistencies, or bad practices. These issues usually arise when using Git alongside code quality tools like **ESLint, Prettier, Pylint, or other linters**.
+
+
+
+---
+ⓘ Metadata <br>
+---
+Title: My Note<br>
+Tags:   #markdown #mdfile<br>
+Author : Shubham Randive<br>
+
+---
+

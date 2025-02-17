@@ -1,10 +1,13 @@
+* This all code is on My GitHub Profile [GITHUB](https://github.com/ShubhamRandive08)  URL FOR NOTES REPOS - [URL](https://github.com/ShubhamRandive08/My-Notes.git)*
+
 What is JavaScript?
 1. JavaScript is the high level interpreted programming language which is used for the create the interactive and dynamic websites. 
 2. It enables to create responsive web applications by adding functionalities like from validations, animations and many more.
+3. It is extended version like TS ( TypeScript ) is also used for the Automation Test with using [Playwright](Playwright.md)  automation tool
 
 What is datatype?
-1. Datatype refers to the kind of which is holds by the variable.
-2. Type of data in JS : 
+4. Datatype refers to the kind of which is holds by the variable.
+5. Type of data in JS : 
 	1. Primitive Data Type :
 			String 
 			Number 
@@ -15,10 +18,10 @@ What is datatype?
 			Symbol
 
 What is variable?
-1. Variable is nothing but container which is used for the store the value. And it also acts as a symbolic name of the values.
-2. Variable of var type can also declare as a copy but let and const type can't be declare as a copy.
+6. Variable is nothing but container which is used for the store the value. And it also acts as a symbolic name of the values.
+7. Variable of var type can also declare as a copy but let and const type can't be declare as a copy.
 
-3. Variable Naming Rules
+8. Variable Naming Rules
 	- Must begin with a letter, underscore (`_`), or dollar sign (`$`).
 	- Cannot start with a number.
 	- Can contain letters, numbers, underscores, and dollar signs.
@@ -70,14 +73,14 @@ Why cant run alert() method on console?
 
 Datatype in JS :
 
-1. Number   Stores the all the type of number range : 2 power 53
-2. BigInt    
-3. null     This is object type initialize as a empty
-4. string
-5. boolean
-6. undefined
-7. object
-8. symbol   It is mostly used for uniqueness
+9. Number   Stores the all the type of number range : 2 power 53
+10. BigInt    
+11. null     This is object type initialize as a empty
+12. string
+13. boolean
+14. undefined
+15. object
+16. symbol   It is mostly used for uniqueness
 
 ```Copy
 console.log(typeof null)
@@ -632,4 +635,15 @@ try {
 ```
 
 ![](/Image/10.png)
+
+
+
+---
+ⓘ Metadata <br>
+---
+Title: My Note<br>
+Tags:   #JS #JavaScript<br>
+Author : Shubham Randive<br>
+
+---
 

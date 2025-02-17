@@ -7,7 +7,7 @@ What is GitHub?<br>
 		Link : https://github.com
 		
 1. Which folder upload on GitHub that is called as Repository and Repos.
-2. If we want create the account on github then we should have one Gmail address.
+2. If we want create the account on GitHub then we should have one Gmail address.
 
 How to create GitHub account : <br>
 	1. Go on Google and search [https://github.com](https://github.com)
@@ -69,13 +69,13 @@ Hot to download  Git?<br>
 	
 What is different type of Git commands?<br>
 
-1. Configuration command :  git config     ( The purpose of the " git config " command is to configure and customize your Git environment. )<br>
+3. Configuration command :  git config     ( The purpose of the " git config " command is to configure and customize your Git environment. )<br>
 
 		git config --global user.name "Your Name"
 		git config --global user.email "srandive245@gmail.com"
 		git config --list
 
-2. Git snapshot command : git branch   (This command can be used for the manage branches in a Git repos. Branches allow you to work on different parts or features of a project independently )<br>
+4. Git snapshot command : git branch   (This command can be used for the manage branches in a Git repos. Branches allow you to work on different parts or features of a project independently )<br>
 
 		List Branches :  
 			git branch  - Lists all local branches in the repository.
@@ -108,32 +108,32 @@ Clone - Cloning a repository on our local machine<br>
 
 Status - Display the state of the code<br>
 		 `git status`
-1. Nothing to commit <br>
+5. Nothing to commit <br>
 ![](/Image/4856.png)
 
 
-2. If we make some changes into the file <br>
+6. If we make some changes into the file <br>
 ![](/Image/0947.png)
 
 
 
 ###### Note : If we want the display the hidden file then fire command : `ls -a`
 ###### Note : If make changes into the file the follow following process --> 1. Adding changes 2. Commit the changes. There are four status for file :<br>
-3. #untracked: New file that git doesn't yet track 
+7. #untracked: New file that git doesn't yet track 
 
-4. #modified : Changed file 
+8. #modified : Changed file 
 
-5. #staged : file is ready to be committed 
+9. #staged : file is ready to be committed 
 
-6. #unmodified : Unchanged file 
+10. #unmodified : Unchanged file 
 
 #### Add and Commit Command<br>
-7. add - Adds new or changed files in your working directories to the git staging area.
+11. add - Adds new or changed files in your working directories to the git staging area.
      `git add < - File name - >` / `git add .` (For adding all changes file)
 ![](/Image/2527.png)
 
 
-8. Commit - It is the record of change.<br>
+12. Commit - It is the record of change.<br>
      `git commit -m "Some message"`
 	![](/Image/2907.png)
 
@@ -148,29 +148,29 @@ Status - Display the state of the code<br>
    
   
    ### Understanding  #origin in GitHub:<br>
-9. origin - In GitHub (and Git in general), `origin` is the default name for the remote repository from which a local repository was cloned. It serves as a shorthand reference to the remote URL of the repository, making it easier to push and pull changes.
+13. origin - In GitHub (and Git in general), `origin` is the default name for the remote repository from which a local repository was cloned. It serves as a shorthand reference to the remote URL of the repository, making it easier to push and pull changes.
 
-10. **When You Clone a Repository:<br>**
+14. **When You Clone a Repository:<br>**
     
     - If you run:<br>
         bash<br>
         `git clone https://github.com/user/repo.git`<br>
         
     - Git automatically assigns the name `origin` to the remote repository (`https://github.com/user/repo.git`).<br>
-11. **Viewing the Remote URL:<br>**
+15. **Viewing the Remote URL:<br>**
     - To check which remote repository is named `origin`, run:
         `git remote -v`
     - Example output:
         `origin  https://github.com/user/repo.git (fetch) origin  https://github.com/user/repo.git (push)`<br>
         
-12. **Using `origin` in Commands:**<br>
+16. **Using `origin` in Commands:**<br>
     - **Pull changes from GitHub:**
         `git pull origin main`<br>
         
     - **Push changes to GitHub:**
         `git push origin main`<br>
         
-13. **Changing or Adding a Remote URL:**<br>
+17. **Changing or Adding a Remote URL:**<br>
     
     - If you need to change the `origin` URL:<br>
         `git remote set-url origin https://github.com/new-user/new-repo.git`<br>
@@ -390,13 +390,17 @@ Git command for Merge Conflic<br>
      `git reset < commit hash>`<br>
      `git reset --hard <- commit hash ->`<br>
 
+###### Git prune command
+The `git prune` command in Git is a maintenance operation that helps to clean up unreachable objects from your repository. It is used to remove objects that are no longer accessible and that might be taking up unnecessary disk space.
+
+
 
 `git log` - Used for check the log of commands <br>
 ---
 ⓘ Metadata <br>
 ---
 Title: My Note<br>
-Tags:  #obsidian #notes #git #github<br>
+Tags:   #git #github<br>
 Author : Shubham Randive<br>
 
 ---
