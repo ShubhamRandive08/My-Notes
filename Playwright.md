@@ -1,53 +1,58 @@
 
 * This file also present on [GitHub](GitHub_Git.md)  URL FOR NOTES - [URL](https://github.com/ShubhamRandive08/My-Notes.git) URL FOR CODE - [URL](https://github.com/ShubhamRandive08/Playwright_Tests.git)*
 ##### Get Started with Playwright 
-1.1 What is Playwright and Advantages, Limitations
-1.2 Playwright Architecture
-1.3 Playwright VS Cypress
-1.4 Playwright VS Selenium WebDriver
-1.5 Software Requirement
-1.6 Install Nodejs And VS Code
-1.7 Install Playwright in VS Code
-1.8 Folder Structure
-1.9 Test Explorer
-1.10 Run Test
-1.11 Run Test on Google Chrome And Microsoft Edge Browsers
-1.12 Record Test in VS Code
-1.13 Generate HTML Test Report
-1.14 Record at Cursor
-1.15 Commonly used Terminologies
-1.16 First Playwright from Command Prompt
-1.17 Pick Locator in VS code
-1.18 Install Playwright from Command Prompt
-1.19 Run Test in Headless mode
-1.20 Run Test in UI mode
-1.21 Run Specific Spec file
-1.22 Run Test On Different Browser
-1.23 Codegen - Record and Play Test
+1.1 What is Playwright and Advantages, Limitations <br>
+1.2 Playwright Architecture<br>
+1.3 Playwright VS Cypress<br>
+1.4 Playwright VS Selenium WebDriver<br>
+1.5 Software Requirement<br>
+1.6 Install Nodejs And VS Code<br>
+1.7 Install Playwright in VS Code<br>
+1.8 Folder Structure<br>
+1.9 Test Explorer<br>
+1.10 Run Test<br>
+1.11 Run Test on Google Chrome And Microsoft Edge Browsers<br>
+1.12 Record Test in VS Code<br>
+1.13 Generate HTML Test Report<br>
+1.14 Record at Cursor<br>
+1.15 Commonly used Terminologies<br>
+1.16 First Playwright from Command Prompt<br>
+1.17 Pick Locator in VS code<br>
+1.18 Install Playwright from Command Prompt<br>
+1.19 Run Test in Headless mode<br>
+1.20 Run Test in UI mode<br>
+1.21 Run Specific Spec file<br>
+1.22 Run Test On Different Browser<br>
+1.23 Codegen - Record and Play Test<br>
 
-##### Locators, Assertion, Hooks and Annotations
-2.1 Locators 
-2.2 Screenshots
-2.3 Hooks
-2.4 Add Screenshots to HTML Report when Test failed
+##### Locators, Assertion, Hooks and Annotations<br>
+2.1 Locators <br>
+2.2 Screenshots<br>
+2.3 Hooks<br>
+2.4 Add Screenshots to HTML Report when Test failed<br>
+2.5 Dropdown List, IFrames and Date Picker <br>
+2.6 Mouse Clicks, Keyboard Actions, Drag and Drop<br>
+2.7 Assertions - Hard And Soft Assertions<br>
+2.8 Watch mode<br>
+2.9 Test Traces, Actions metadata, Console, Log, Network<br>
 
 
-#### Getting Started with Playwright
-1.1 What is Playwright and advantages, Limitations
-     Playwright is an open-source automation testing tool which is used test end to end modern web mobile applications in headed or headless mode.
+#### Getting Started with Playwright<br>
+1.1 What is Playwright and advantages, Limitations<br>
+     Playwright is an open-source automation testing tool which is used test end to end modern web mobile applications in headed or headless mode.<br>
 
-###### Advantages :
-- Cross Browser Testing - Chrome, Edge, Chromium, Firefox and Webkit
-- Cross Platform Testing - Windows, Linux, And MacOS.
-- Cross Programming Language - JS, TS, Python, .NET and Java
-- Mobile/Web - Mobile emulation of Google Chrome for Android and Mobile, Safari
-- Auto wait
-- Tracing
-- Reporting
-- Dynamic wait assertions
-- Faster and Reliable
-- Powerful Tooling - Codegen, Playwright Inspector and Trace Viewer
-- No Flaky test
+###### Advantages :<br>
+- Cross Browser Testing - Chrome, Edge, Chromium, Firefox and Webkit<br>
+- Cross Platform Testing - Windows, Linux, And MacOS.<br>
+- Cross Programming Language - JS, TS, Python, .NET and Java<br>
+- Mobile/Web - Mobile emulation of Google Chrome for Android and Mobile, Safari<br>
+- Auto wait<br>
+- Tracing<br>
+- Reporting<br>
+- Dynamic wait assertions<br>
+- Faster and Reliable<br>
+- Powerful Tooling - Codegen, Playwright Inspector and Trace Viewer<br>
+- No Flaky test<br>
 
 
 ###### Disadvantages
@@ -340,11 +345,100 @@ npx playwright show-report - For show the report into the HTML format
 npx playwright test --headed demo.spec.js
 ```
 
+1.22 Run Test on Different Browsers using the commands
+
+***You Can Also Use the TERMINIL or CMD for run the playwright tests
 
 
+```
+// On Chromium
+npx playwright test --project = chomium
+
+// On Firefox
+npx playwright test --project = firefox
+
+// On webkit
+npx playwright test --project = webkit
+
+// On Microsoft Edge
+npx playwright test --project = msedge
+
+// On Googel Chrome
+npx playwright test --project = chrome
+
+```
 
 
+1.23 Record Test using Codegen
 
+***If you can get the test code with the help of the `codegen` , for that you can Simply type the `npm playwright codegen` And simply hit the `ENTER` key  
+
+***Then you can navigate on the `One Chromium Or Any Browser` and `playwright inspector like as a VS Code` 
+
+### ***`Whatever action can perform by you on the given playwright browser that is automatically track by the playwright inspector and this is store into the playwright inspector`
+
+
+#### @2 Locators, Assertions, Hooks, Annotations and Actions
+
+2.1 Locators - Identify web element<br>
+i. By Role <br>
+Role : ***alert / alertdialog / application / article / banner / blockquote / button / caption / cell / checkbox / code /  columnheadger / combobox / complementary /  link 
+<br>
+ex, 
+```
+await page.getByRole( 'role' , {object}).function();
+await page.getByRole('link', { name : 'value'}).click();
+```
+
+ii . By Label<br>
+ex,<br>
+```
+await page.getByLabel('value', {exact : true}).fill('value');
+```
+
+iii. By Alt Text<br> 
+ex,<br>
+```
+await page.getByAltText('text').click();
+```
+
+iv. By Test Id<br>
+ex,<br>
+```
+await page.getByTestid('value').fill('testers talk');
+```
+
+v. By Text<br>
+- Complete text should be present<br>
+ex,<br>
+```
+await page.getByText('any text', {exact : true}).click();
+```
+
+vi. By Title<br>
+ex,<br>
+```
+await page.getByTitle('cypress by testers talk').click();
+```
+
+vii. XPath<br>
+ex,<br>
+```
+await page.locator
+("xpath = //*[@attr = 'value']").click();
+```
+
+viii. CSS selector<br>
+ex,<br>
+```
+await page.locator("css = //*[@attr = 'value']").click();
+```
+
+ix. By Placeholder<br>
+ex,<br>
+```
+await page.ByPlaceholder('value').click()
+```
 
 
 

@@ -72,43 +72,53 @@ What is difference between  `put` and `patch` methods<br>
 
 #### **REST API Status Codes**
 
-| Status Code | Meaning                                                                                           |
-| ----------- | ------------------------------------------------------------------------------------------------- |
-| 100         | Continue - The server received the request headers and is waiting for the body                    |
-| 101         | Switching Protocols – The server is switching protocols as requested by the client                |
-| 102         | Processing – The request is being processed, but no response is available yet (WebDAV)            |
-| 103         | - Early Hints – Used to preload resources before the final response.                              |
-|             |                                                                                                   |
-| 200         | OK – The request was successful                                                                   |
-| 201         | Created – A new resource was successfully created.                                                |
-| 202         | Accepted – The request has been accepted for processing but not completed                         |
-| 203         | Non-Authoritative Information – Response metadata is from a different source.                     |
-| 204         | No Content – The request was successful, but there is no content in the response.                 |
-| 205         | Reset Content – The response instructs the client to reset the document view.                     |
-| 206         | Partial Content – The server is delivering a portion of the resource (used for range requests).   |
-| 207         | Multi-Status – Multiple status codes might be returned (WebDAV).                                  |
-| 208         | Already Reported – The resource has already been reported in the current response.                |
-| 226         | IM Used – The server has applied instance manipulations (Delta encoding).                         |
-|             |                                                                                                   |
-| 300         | Multiple Choices – There are multiple options for the resource.                                   |
-| 301         | Moved Permanently – The resource has permanently moved to a new URL.                              |
-| 302         | Found – The resource is temporarily located at a different URL.                                   |
-| 303         | See Other – The client should fetch the resource from another URL (e.g., after a `POST` request). |
-| 304         | Not Modified – The resource has not changed since the last request.                               |
-| 305         | Use Proxy – The resource is available only through a proxy (deprecated).                          |
-| 307         | Temporary Redirect – The request should be repeated with another URL (method remains unchanged).  |
-| 308         | Permanent Redirect – The resource has moved permanently (like 301 but method remains unchanged).  |
-|             |                                                                                                   |
-| 400         | Bad Request – The request is invalid or malformed.                                                |
-| 401         | Unauthorized – Authentication is required.                                                        |
-| 402         | Payment Required – Reserved for future use.                                                       |
-| 403         | - Forbidden – The client does not have permission to access the resource.                         |
-| 404         | Not Found – The resource was not found.                                                           |
-| 405         | Method Not Allowed – The HTTP method is not allowed for this resource                             |
-| 406         | Not Acceptable – The requested format is not supported.                                           |
-| 407         | Proxy Authentication Required – The client must authenticate with a proxy.                        |
-|             |                                                                                                   |
-| 500         | Internal Server Error – A generic error when something goes wrong on the server.                  |
-| 501         | Not Implemented – The server does not support the request method.                                 |
-| 502         | Bad Gateway – The server received an invalid response from an upstream server.                    |
-| 503         | Service Unavailable – The server is temporarily unavailable.                                      |
+| Status Code | Meaning                                                                                           |     |
+| ----------- | ------------------------------------------------------------------------------------------------- | --- |
+| 100         | Continue - The server received the request headers and is waiting for the body                    |     |
+| 101         | Switching Protocols – The server is switching protocols as requested by the client                |     |
+| 102         | Processing – The request is being processed, but no response is available yet (WebDAV)            |     |
+| 103         | - Early Hints – Used to preload resources before the final response.                              |     |
+|             |                                                                                                   |     |
+| 200         | OK – The request was successful                                                                   |     |
+| 201         | Created – A new resource was successfully created.                                                |     |
+| 202         | Accepted – The request has been accepted for processing but not completed                         |     |
+| 203         | Non-Authoritative Information – Response metadata is from a different source.                     |     |
+| 204         | No Content – The request was successful, but there is no content in the response.                 |     |
+| 205         | Reset Content – The response instructs the client to reset the document view.                     |     |
+| 206         | Partial Content – The server is delivering a portion of the resource (used for range requests).   |     |
+| 207         | Multi-Status – Multiple status codes might be returned (WebDAV).                                  |     |
+| 208         | Already Reported – The resource has already been reported in the current response.                |     |
+| 226         | IM Used – The server has applied instance manipulations (Delta encoding).                         |     |
+|             |                                                                                                   |     |
+| 300         | Multiple Choices – There are multiple options for the resource.                                   |     |
+| 301         | Moved Permanently – The resource has permanently moved to a new URL.                              |     |
+| 302         | Found – The resource is temporarily located at a different URL.                                   |     |
+| 303         | See Other – The client should fetch the resource from another URL (e.g., after a `POST` request). |     |
+| 304         | Not Modified – The resource has not changed since the last request.                               |     |
+| 305         | Use Proxy – The resource is available only through a proxy (deprecated).                          |     |
+| 307         | Temporary Redirect – The request should be repeated with another URL (method remains unchanged).  |     |
+| 308         | Permanent Redirect – The resource has moved permanently (like 301 but method remains unchanged).  |     |
+|             |                                                                                                   |     |
+| 400         | Bad Request – The request is invalid or malformed.                                                |     |
+| 401         | Unauthorized – Authentication is required.                                                        |     |
+| 402         | Payment Required – Reserved for future use.                                                       |     |
+| 403         | - Forbidden – The client does not have permission to access the resource.                         |     |
+| 404         | Not Found – The resource was not found.                                                           |     |
+| 405         | Method Not Allowed – The HTTP method is not allowed for this resource                             |     |
+| 406         | Not Acceptable – The requested format is not supported.                                           |     |
+| 407         | Proxy Authentication Required – The client must authenticate with a proxy.                        |     |
+|             |                                                                                                   |     |
+| 500         | Internal Server Error – A generic error when something goes wrong on the server.                  |     |
+| 501         | Not Implemented – The server does not support the request method.                                 |     |
+| 502         | Bad Gateway – The server received an invalid response from an upstream server.                    |     |
+| 503         | Service Unavailable – The server is temporarily unavailable.                                      |     |
+
+
+---
+ⓘ Metadata <br>
+---
+Title: My Note<br>
+Tags:   #restfulApi #api<br>
+Author : Shubham Randive<br>
+
+---
