@@ -17,10 +17,6 @@ What is locators?
     - Fast and reliable if the `id` is unique on the page.
     - Example:
         
-        html
-        
-        CopyEdit
-        
         `<input id="username" type="text">`
         
         Locator: `#username` or `document.getElementById("username")`
@@ -29,11 +25,7 @@ What is locators?
     - Uses the `class` attribute of an element.
     - May return multiple elements if the class is not unique.
     - Example:
-        
-        html
-        
-        CopyEdit
-        
+
         `<div class="error-message">Invalid username</div>`
         
         Locator: `.error-message` or `document.getElementsByClassName("error-message")`
@@ -42,11 +34,7 @@ What is locators?
     - Uses the `name` attribute of an element.
     - Often used in form fields.
     - Example:
-        
-        html
-        
-        CopyEdit
-        
+
         `<input name="email" type="email">`
         
         Locator: `[name="email"]`
@@ -54,11 +42,7 @@ What is locators?
     
     - Matches elements by their HTML tag.
     - Example:
-        
-        html
-        
-        CopyEdit
-        
+
         `<button>Click Me</button>`
         
         Locator: `button` or `document.getElementsByTagName("button")`
@@ -66,11 +50,7 @@ What is locators?
     
     - Finds links by their visible text.
     - Example:
-        
-        html
-        
-        CopyEdit
-        
+
         `<a href="/about">Learn More</a>`
         
         Locator: Link text: `"Learn More"`
@@ -78,11 +58,7 @@ What is locators?
     
     - Finds links that contain specific text.
     - Example:
-        
-        html
-        
-        CopyEdit
-        
+
         `<a href="/contact">Contact Us</a>`
         
         Locator: Partial link text: `"Contact"`
@@ -91,11 +67,7 @@ What is locators?
     - Uses the XML Path Language (XPath) to locate elements.
     - Flexible but can be verbose and fragile.
     - Example:
-        
-        html
-        
-        CopyEdit
-        
+
         `<div><span class="info">Details</span></div>`
         
         Locator: `//div/span[@class='info']`
@@ -617,6 +589,161 @@ test('User can log in successfully', async ({ page }) => {
 🔹 When writing large-scale test automation projects.  
 🔹 When needing to **reuse** common actions across different tests.  
 🔹 When following **clean code** principles to improve test structure.
+
+
+What is NVM ?
+NVM (Node Version Manager) is a tool that allows you to install, manage, and switch between different versions of Node.js on your system. It is especially useful when working on multiple projects that require different Node.js versions.
+
+### Key Features of NVM:
+
+- Install multiple versions of Node.js
+- Switch between Node.js versions easily
+- Set a default Node.js version for new terminal sessions
+- Automatically use specific Node.js versions per project with a `.nvmrc` file
+
+
+### How to Install NVM:
+
+- **On macOS/Linux:**  
+    Run the following command in your terminal:
+
+    `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash`
+    
+    Then, restart your terminal or run:
+
+    `source ~/.bashrc  # or ~/.bash_profile, ~/.zshrc depending on your shell`
+    
+- **On Windows:**  
+    Use [nvm-windows](https://github.com/coreybutler/nvm-windows) instead, as the regular NVM is designed for Unix-based systems.
+    
+
+### Common NVM Commands:
+
+- **Check installed versions:**
+
+    `nvm list`
+    
+- **Install a specific Node.js version:**
+
+    `nvm install 18`
+    
+- **Use a specific Node.js version:**
+
+    `nvm use 18`
+    
+- **Set a default Node.js version:**
+
+    `nvm alias default 18`
+
+### **Redis DB (Database) Overview** <br>
+
+Redis is primarily an **in-memory key-value store**, but it also offers basic database-like features. Unlike traditional relational databases (e.g., MySQL, PostgreSQL), Redis is **non-relational (NoSQL)** and designed for **speed and scalability** rather than complex queries.
+
+## **How Redis Handles Databases**
+
+1. **Multiple Databases (DB Indexing)**
+    
+    - Redis supports multiple logical databases **indexed numerically** (e.g., `DB 0`, `DB 1`, etc.).
+    - The default database is **DB 0**.
+    - You can switch databases using:
+
+        `SELECT 1  # Switch to DB 1`
+        
+    - However, Redis is typically used as a **single database** due to its primary focus on in-memory performance.
+2. **Persistence (Saving Data to Disk)**
+    
+    - Redis supports **persistence mechanisms** to avoid losing data:
+        - **RDB (Redis Database File)** → Snapshot-based persistence (saves periodically).
+        - **AOF (Append-Only File)** → Logs every write operation for durability.
+        - **Hybrid Mode** → Combines both RDB and AOF for better performance and reliability.
+3. **Data Structures Instead of Tables**
+    
+    - Instead of tables and rows, Redis stores **key-value pairs** with various **data structures**:
+        - **Strings** → `"user:1" => "John"`
+        - **Lists** → Queues, message logs (`LPUSH`, `LPOP`)
+        - **Sets** → Unique collections (`SADD`, `SMEMBERS`)
+        - **Hashes** → Storing objects (`HSET user:1 name "Alice"`)
+        - **Sorted Sets** → Leaderboards, ranking systems (`ZADD score 100 "Player1"`)
+
+---
+
+## ** When to Use Redis as a Database?**
+
+ **High-speed caching** (session storage, API responses)  
+ **Real-time applications** (leaderboards, chat systems)  
+ **Pub/Sub messaging** (event-driven systems, notifications)  
+ **Rate limiting** (throttling API requests)  
+ **Simple key-value storage** (user sessions, feature flags)
+
+ **Not Ideal for:**  
+ Complex queries (SQL-style joins, deep analytics)  
+ Large datasets that don’t fit in memory
+
+---
+
+## ** Example: Using Redis as a Simple Database**
+
+`# Start Redis CLI redis-cli  # Switch to a database (optional) SELECT 1  # Add a user to the database HSET user:1001 name "Alice" age "25" city "New York"  # Retrieve user details HGETALL user:1001`
+
+
+## **Redis Pub/Sub (Publish/Subscribe)**
+
+Redis **Pub/Sub** is a messaging pattern where:
+
+- **Producers (Publishers)** send messages to a **channel**.
+- **Consumers (Subscribers)** listen to the channel and receive messages **in real-time**.
+
+### ** How Redis Pub/Sub Works**
+
+1. A **subscriber** subscribes to a channel.
+2. A **publisher** sends messages to that channel.
+3. All subscribers to that channel receive the message instantly.
+
+### *Example: Using Redis Pub/Sub**
+
+`# Open Redis CLI and subscribe to a channel redis-cli SUBSCRIBE news`
+
+In another terminal:
+
+`# Publish a message to the "news" channel redis-cli PUBLISH news "Breaking: Redis 7.0 released!"`
+
+ **Note:** Pub/Sub messages **do not persist** in Redis. If a subscriber is offline, they will miss messages.
+
+---
+
+## ** Redis Streams (Persistent Message Queue)**
+
+Unlike Pub/Sub, **Redis Streams** **stores messages** and allows consumers to process them **later**.
+
+### ** How Redis Streams Work**
+
+- Producers add messages to a stream.
+- Consumers read and process messages **at their own pace**.
+- Messages can be stored and replayed later.
+- Supports **consumer groups** for **load balancing**.
+
+### ** Example: Using Redis Streams**
+
+`# Add a message to a stream XADD mystream * message "Hello, Redis Streams!"`
+
+`# Read the latest message from the stream XREAD COUNT 1 STREAMS mystream 0`
+
+ **Key Differences Between Pub/Sub and Streams:**
+
+| Feature                 | Pub/Sub             | Streams                   |
+| ----------------------- | ------------------- | ------------------------- |
+| **Persistence**         | No                  | Yes                       |
+| **Replay Old Messages** | No                  | Yes                       |
+| **Consumer Groups**     | No                  |  Yes                      |
+| **Use Case**            | Real-time messaging | Event processing, logging |
+
+---
+
+## **🔧 When to Use Redis as a Message Broker?**
+
+ **Use Pub/Sub** for **real-time notifications** (chat apps, live updates).  
+ **Use Streams** for **event-driven architectures** (order processing, logs, analytics).  
+ **Don't use Redis** for large-scale, persistent messaging needs (Kafka, RabbitMQ are better).
 
 
 

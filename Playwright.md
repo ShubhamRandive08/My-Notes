@@ -381,7 +381,7 @@ npx playwright test --project = chrome
 #### @2 Locators, Assertions, Hooks, Annotations and Actions
 
 2.1 Locators - Identify web element<br>
-i. By Role <br>
+i. By Role ( Used the locators )<br>
 Role : ***alert / alertdialog / application / article / banner / blockquote / button / caption / cell / checkbox / code /  columnheadger / combobox / complementary /  link 
 <br>
 ex, 
@@ -390,13 +390,13 @@ await page.getByRole( 'role' , {object}).function();
 await page.getByRole('link', { name : 'value'}).click();
 ```
 
-ii . By Label<br>
+ii . By Label ( Used the label )<br>
 ex,<br>
 ```
 await page.getByLabel('value', {exact : true}).fill('value');
 ```
 
-iii. By Alt Text<br> 
+iii. By Alt Text ( Used the alt text of image )<br> 
 ex,<br>
 ```
 await page.getByAltText('text').click();
@@ -439,6 +439,8 @@ ex,<br>
 ```
 await page.ByPlaceholder('value').click()
 ```
+
+
 
 
 
