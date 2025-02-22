@@ -39,7 +39,7 @@
 
 #### Getting Started with Playwright<br>
 1.1 What is Playwright and advantages, Limitations<br>
-     Playwright is an open-source automation testing tool which is used test end to end modern web mobile applications in headed or headless mode.<br>
+     Playwright is an open-source automation testing tool which is used test end to end modern web, mobile applications in headed or headless mode.<br>
 
 ###### Advantages :<br>
 - Cross Browser Testing - Chrome, Edge, Chromium, Firefox and Webkit<br>
@@ -65,9 +65,9 @@
 
 - Client - In the client side our automation test code will be written in different language such as js, python, C# etc.
 
-- Server - The server communicates between client and web browser engines such as chrome, firefox, edge etc. fire.
+- Server - The server communicates between client and web browser engines such as chrome, Firefox, edge etc. fire.
 
-- Playwright uses COP to commucate with chromium or chrome browser, similarly Playwright has implemented CDP to communicate with other browser such as firefox and webkits etc.
+- Playwright uses COP to commutate with chromium or chrome browser, similarly Playwright has implemented CDP to communicate with other browser such as firefox and webkits etc.
 
 - WebSocket Protocol - WebSocket connection is established to the server from client by using process called Web Socket Handsake, WebSocket sends respons e as soon as it gets requests in real time. Connection will be not terminated until unless connection is closed by either client or server.
 
@@ -85,10 +85,10 @@
 ![](/Image/PlayVSCypress.png)
 
 
-##### 1.5 Software Requiremen
+##### 1.5 Software Requirement
 	a. Node JS
 	b. Visual Studio Code (VS code)
-	c. JS 
+	c. JS / TS
 	d.  Operating System ( Window / MAC / Linux )
 
 ##### 1.7 Install Playwright in VS code
@@ -102,7 +102,7 @@ Then wait for some time to complete the installation.
 ###### How to run the Playwright test
 
 ###### Step 1
-Simply go to the `Playwright test for VSCode` extension and click the `run or run and debug` button
+Simply go to the `Playwright test for VSCode` extension and click the `run or run with debug` button
 
 ###### Step 2
 Go on terminal and fire command `npx playwright test`
@@ -295,7 +295,7 @@ await newPage.goto('https://example.com');
 
 ##### How to install Playwright using Command prompt
 - First time open the CMD.
-Step 1 - Enter '`npm init playwright@latest`
+Step 1 - Enter `npm init playwright@latest`
 Step 2 - Select Playwright configurations
 	Then wait for some time to intall playwright
 
@@ -439,6 +439,374 @@ ex,<br>
 ```
 await page.ByPlaceholder('value').click()
 ```
+
+<br>
+```
+import { expect, test } from "@playwright/test"
+
+
+test('Locator Test', async ({page}) =>{
+
+    // Go to URL
+
+    // await page.goto('https://playwright.dev/')
+
+    // await page.waitForTimeout(3000); // Wait for 3 seconds between requests
+
+    // // By role
+
+    // // await page.getByRole('link',{name : 'Videos'}).click();
+
+    // await page.getByRole('link', {name : 'Docs'}).click()
+
+
+    // By Label
+
+    // await page.goto('https://www.google.com/')
+
+
+    // await page.getByLabel('Search', {exact : true}).fill('api testing by testers talk')
+
+    // await page.waitForTimeout(4000)
+
+    // await page.getByLabel('Search', {exact : true}).press('Enter')
+
+
+    // await page.goto('https://github.com/BakkappaN')
+
+    // await page.getByAltText("View BakkappaN's full-sized avatar").click()
+
+
+    // By Test ID
+
+    // await page.goto('https://github.com/login')
+
+    // await page.getByTestId('username').fill('srandive245@gmail.com')
+
+    // await page.getByTestId('current-password').fill('Kingsr@09')
+
+    // await page.goto('https://www.youtube.com/')
+
+    // await page.getByPlaceholder('Search').click()
+
+    // await page.getByPlaceholder('Search').fill('@testerstalk')
+
+    // await page.getByPlaceholder('Search').press('Enter')
+
+    // await page.getByTitle("#4 Step by Step Integrating Playwright with CICD Tools(Jenkins+GitHub,Azure DevOps & GitHub Actions)").click()
+
+    // await page.goto('https://www.youtube.com/')
+
+    // await page.getByPlaceholder('Search').fill('@testerstalk')
+
+    // await page.getByPlaceholder('Search').press('Enter')
+
+    // await page.getByText("#4 Step by Step Integrating Playwright with CICD Tools(Jenkins+GitHub,Azure DevOps & GitHub Actions)").click()
+
+    // await page.goto('https://www.youtube.com/')
+
+    // await page.locator("//*[@name='search_query']").click()
+
+    // await page.locator("//*[@name='search_query']").fill('Github with A to Z with Shubham')
+
+    // await page.locator("//*[@name='search_query']").press('Enter')
+
+    // await page.getByText('What Is GitHub? | GitHub Profile Creation | Use of GitHub | Part I').click();
+
+    await page.goto('https://www.youtube.com')
+
+    await page.locator("[name = 'search_query']").click()
+
+    await page.locator("[aria-controls = 'i0']").fill('Github with A to Z with Shubham')
+
+    await page.locator("[name = 'search_query']").press('Enter')
+
+    await page.getByText('What Is GitHub? | GitHub Profile Creation | Use of GitHub | Part I').click();
+
+    await page.waitForTimeout(5000)
+
+})
+```
+<br>
+2.2 Screenshots <br>
+	i. Elements Screenshot
+	ii. Page Screenshot
+	iii. Full Page Screenshot <br>
+
+i. Elements Screenshot : <br>
+Capture the screenshot of the element of the page .
+```
+await page.locator("[class = 'demo-jam']").screenshot({path : './Screenshot/demo.png'})
+```
+
+ii. Page Screenshot<br>
+Capture the screenshot of the present page of the browser screen
+```
+await page.screenshot({path : './Screenshots/demo.png});
+```
+
+iii. Full Page Screenshot<br>
+Capture the screenshot of the entire page of the scrolling page
+```
+await page.screenshot({path : './Screenshot/demo.png', fullPage : true})
+```
+<br>
+-  Add Screenshots to Playwright Test Report when Test failed<br>
+***`For adding the screenshot if the test case getting failed that time we can perform simple action that is - Go to the playwright.config.js file and go inside the defineConfig property and then go inside of the use property and add that file 'screenshot : 'only-on-failure' ' value`
+
+<br>
+```
+// Include playwright module
+
+const { test, expect } = require('@playwright/test')  
+
+test('Take a screenshot in playwright', async ({ page }) => {
+
+    await page.goto('https://www.youtube.com/@Mr.Shubham_Randive')
+
+    // Element Screenshot
+
+    await page.locator("[class = 'yt-spec-avatar-shape__image-overlays yt-spec-avatar-shape__image']").screenshot({path : './Screenshots/element.png'})
+
+    // Page Screenshot
+
+    await page.screenshot({path : './Screenshots/page.png'})
+
+    // Full page screenshot
+
+    await page.screenshot({path : './Screenshots/Full_page.png', fullPage : true})
+    
+    await page.close();
+
+})
+```
+<br>
+2.3 Hooks : 
+`Hooks is nothing but block of code  and that will be getting executed after the test cases or before the test cases. They are useful for setup, teardown, and handling test lifecycle events.` <br>
+
+## **Types of Hooks in Playwright**<br>
+
+Playwright provides the following hooks inside `test.describe()`: <br>
+
+|Hook|Description|
+|---|---|
+|`beforeAll()`|Runs **once** before all tests in a test suite.|
+|`beforeEach()`|Runs **before each** test inside a suite.|
+|`afterEach()`|Runs **after each** test inside a suite.|
+|`afterAll()`|Runs **once** after all tests in a test suite.|
+<br>
+## **When to Use Hooks in Playwright?**
+
+ **`beforeAll()`** → Use for **global setup** like database connections, authentication, or API mocking.  
+ **`beforeEach()`** → Use for **navigating to a page** or initializing test data before each test.  
+ **`afterEach()`** → Use for **cleaning up test data, logging, or taking screenshots** on failure.  
+ **`afterAll()`** → Use for **closing databases, clearing caches, or final cleanup**.<br>
+- beforeAll() - It runs before all tests in test suite...... We can't use the page object inside the beforeAll() hook
+
+
+```
+test.beforAll('Runs before all test cases', async() => {
+	await page.gotot('https://www.youtube.com')
+	console.log('Runs before the all test cases')
+})
+```
+<br>
+- beforeEach() : It runs before the each test cases
+```
+test.describe('TestCases for the Playwright hooks', async () =>{
+	test.beforeEach('Runs before each test cases', async ({ page }) => {
+		console.log('Runs before each test cases');
+		await page.goto('https://www.youtube.com')
+	})
+})
+```
+
+-  afterAll() - It runs after all tests in test suite...... We can't use the page object inside the beforeAll() hook
+
+
+```
+test.afterAll('Runs before all test cases', async() => {
+	console.log('Runs after the all test cases')
+})
+```
+<br>
+- afterEach() : It runs after the each test cases
+```
+test.describe('TestCases for the Playwright hooks', async () =>{
+	test.afterEach('Runs after each test cases', async ({ page }) => {
+		console.log('Runs after each test cases');
+	})
+})
+```
+
+Code
+<br>
+```
+import {test,expect} from '@playwright/test'
+
+const logGreenMessage = async (message, delay = 1000) => {
+
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    console.log(`\x1b[32m✔ ${message}\x1b[0m`); // \x1b[32m makes text green
+
+};
+
+test.describe('Hooks in Playwright', () =>{
+
+    test.beforeEach('Run before each test', async ({page}) => {
+
+        await page.goto('https://www.youtube.com/')
+
+        await page.getByRole('combobox', { name: 'Search' }).click();
+
+    })
+
+  
+
+    test.beforeAll('Run before all test', async() => { // In that case we cant use 'page' object
+
+        console.log('Runs before all tests..')
+
+    })
+
+  
+
+    test.afterEach('Run after each test', async ({page}) => {
+
+        console.log('Runs after the each test')
+
+    })
+
+  
+
+    test.afterAll('Run after all test', async() => { // In that case we cant use 'page' object
+
+        console.log('Runs after all tests..')
+
+    })
+
+    test('Test No. 01 - Hooks', async ({page}) =>{
+
+        // Search with keywords
+
+        await page.getByRole('combobox', { name: 'Search' }).fill('cypress by testers talk');
+
+        await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeEnabled();
+
+        await page.getByRole('button', { name: 'Search', exact: true }).click();
+
+        await page.waitForTimeout(5000);
+
+        //Click on playlist
+
+        await page.getByRole('link', { name: 'Cypress by Testers Talk☑️' }).click();
+
+        // Validate title
+
+        await expect(page).toHaveTitle('Cypress Tutorial Full Course | Cypress Automation | Learn Cypress in 5 Hrs - YouTube');
+
+        await page.close();
+
+        await logGreenMessage("Test 1 Passed", 1000); // D
+
+    })
+
+    test('Test No. 02 - Hooks', async ({page}) =>{
+
+        // Search with keywords
+
+        await page.getByRole('combobox', { name: 'Search' }).fill('GitHub with A to Z with Shubham');
+
+        await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeEnabled();
+
+        await page.getByRole('button', { name: 'Search', exact: true }).click();
+
+        await page.getByText('What Is GitHub? | GitHub Profile Creation | Use of GitHub | Part I').click();
+
+        await page.close();
+
+        await logGreenMessage("Test 2 Passed", 1000); // D
+
+    })
+
+})
+```
+
+<br>
+2.5 Dropdown List, IFrames and Drag and Drop
+
+Dropdown List : <br>
+When you want to select the Dropdown items, for that we use `var_name.selectOption('value')` method <br>
+
+There are use the following two methods,
+<br>
+	i. Value
+	ii. Visible Text
+
+i. Value : We use `value` attribute  as a getting the value from the dropdown
+
+Ex,
+```
+const dropDownList = page.locator('#mount')
+
+dropDownList.selectOption('5')
+```
+<br>
+ii. Visible Text : We use `visible text` as for getting the value from the dropdown<br>
+Ex, 
+```
+const dropDownList = page.locator('#main')
+
+dropDownList.selectOption('Aug')
+```
+
+
+```
+import {test,expect} from '@playwright/test'
+
+test.describe('Script for the dropdown cheking', async () =>{
+
+    test.beforeEach('Before each test cases', async ({page}) =>{
+
+        await page.goto('https://www.facebook.com/')
+
+    })
+
+    test('Test No. 1 - DropDown List', async ({page}) => {
+
+        await expect(page.locator("[class = '_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy']")).toBeVisible();
+
+        await page.locator("[class = '_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy']").click();
+
+        const dropDownList = page.locator('#month');
+
+        await page.waitForTimeout(5000)
+
+        dropDownList.selectOption('5') // By Value
+
+        dropDownList.selectOption('Aug')
+
+        await page.waitForTimeout(5000)
+
+        await page.waitForTimeout(5000)
+
+        await page.close()
+
+    })
+
+})
+```
+
+
+I Frames in Playwright and Drag and Drop<br>
+- In that case firstly we can find out the `iFrame` elements then we can perform action which is in within the iframe <br>
+- In that scenario we can perform following actions
+		- Firstly find the `iframe` elements
+		- Define the `src` and the `dest` elements
+		- Then perform the action of the `drag` and `drop`
+
+
 
 
 
