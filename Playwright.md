@@ -877,13 +877,62 @@ test.describe('Test Cases for iframe in playwright the Drag and Drop Functionali
 })
 ```
 <br>
-2.6 Mouse Action in Playwright <br>
+2.6 A. Mouse Action in Playwright <br>
  There are several mouse click
-	 - click()
-	 - dblclick()
-	 - rightclick()
-	 - leftclick()
-	 - middleclick()
+	 - click() : This is used for the click on the particular element 
+	 - dblclick() : This is used for the double click on the element
+	 - rightclick : This is used for perform the right click on the element
+	 - leftclick : This is used for perform the left click on the element
+	 - middleclick : This is used for the perform the middle click on the element <br>
+
+Ex, 
+```
+import {test,expect} from '@playwright/test'
+
+test.describe('Mouse Action in playwright', async () => {
+
+    test('Test No. 01 - Mouse Action', async ({page}) => {
+
+        await page.goto('https://www.bing.com/search?q=A+to+Z+with+Shubham')
+
+        // await page.locator('.gLFyf').click();
+
+        // await page.locator('.gLFyf').type('https://www.youtube.com/@Shubham_Randive')
+
+        //click
+
+         await page.getByRole("link", {name : 'A to Z with Shubham - YouTube'}).first().click();
+
+        // double click
+
+         await page.getByRole('link', {name : `A to Z with Shubham - YouTube`}).first().dblclick()
+
+        // mouse right click
+
+         await page.getByRole('link', {name : `A to Z with Shubham - YouTube`}).first().dblclick({button : 'right'})
+
+        // mouse middle click
+
+         await page.getByRole('link', {name : `A to Z with Shubham - YouTube`}).first().dblclick({button : 'middle'})
+
+        //left click
+
+         await page.getByRole('link', {name : `A to Z with Shubham - YouTube`}).first().dblclick({button : 'left'})
+        
+        //mouse hover
+
+        await page.locator("[aria-label = 'Search using voice']").hover()
+
+    })
+
+})
+```
+
+B. Keyboard Action in Playwright <br>
+This is used for the perform the keyboard action.<br>
+In that we press following keys,<br>
+- Backquote, Minus, Equal, Backslash, Tab, Delete, Escape, ArrowDown, End, Enter, Home, Insert, PageDown, PageUp, ArrowRight, ArrowUp, F1 - F12, 0 - 9, A - Z, etc.
+
 
 
 
