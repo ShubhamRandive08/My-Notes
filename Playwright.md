@@ -31,7 +31,7 @@
 2.3 Hooks<br>
 2.4 Add Screenshots to HTML Report when Test failed<br>
 2.5 Dropdown List, IFrames and Date Picker <br>
-2.6 Mouse Clicks, Keyboard Actions, Drag and Drop<br>
+2.6 Mouse Clicks, Keyboard Actions, Drag and Drop and Date Picker<br>
 2.7 Assertions - Hard And Soft Assertions<br>
 2.8 Watch mode<br>
 2.9 Test Traces, Actions metadata, Console, Log, Network<br>
@@ -931,7 +931,105 @@ test.describe('Mouse Action in playwright', async () => {
 B. Keyboard Action in Playwright <br>
 This is used for the perform the keyboard action.<br>
 In that we press following keys,<br>
-- Backquote, Minus, Equal, Backslash, Tab, Delete, Escape, ArrowDown, End, Enter, Home, Insert, PageDown, PageUp, ArrowRight, ArrowUp, F1 - F12, 0 - 9, A - Z, etc.
+- Backquote, Minus, Equal, Backslash, Tab, Delete, Escape, ArrowDown, End, Enter, Home, Insert, PageDown, PageUp, ArrowRight, ArrowUp, F1 - F12, 0 - 9, A - Z, etc. <br>
+```
+import {test, exact, expect } from '@playwright/test'
+
+import exp from 'constants'
+
+test.describe('Playwright tests for keyboard action', async () =>{
+
+    test('Test No.01 : Keybord Action', async ({page}) => {
+
+        page.goto('https://www.youtube.com/')
+
+        await expect(page.locator("//input[@name = 'search_query']")).toBeVisible();
+
+        await page.locator("//input[@name = 'search_query']").click()
+
+        // await page.locator("//input[@name = 'search_query']").type('Playwright by testers talk')
+
+        // Press Enter
+
+        //await page.locator("//input[@name = 'search_query']").press('Enter')
+
+        // Press control + a and Delete
+
+        // page.locator("//input[@name = 'search_query']").click()
+
+        //await page.locator("//input[@name = 'search_query']").press('Control+a')
+
+        //await page.locator("//input[@name = 'search_query']").press('Delete')
+
+  
+
+        // Press Tab
+
+        await page.keyboard.press('Tab')
+
+        await page.keyboard.press('Tab')
+
+        await page.keyboard.press('Enter')
+
+        await page.waitForTimeout(10000)
+
+        await page.close()
+
+    })
+})
+```
+<br>
+C. Date Picker
+In that case we can select the any date from the particular date UI<br>
+Which is help to us for select the date<br>
+```
+const {test,expect} = require('@playwright/test')
+
+test.describe('Date Picker', async () =>{
+
+    test('Peak the Date', async ({page}) => {
+
+        await page.goto('https://jqueryui.com/datepicker/')
+
+        const frameElement = page.frameLocator("//iframe[@class = 'demo-frame']")
+
+        frameElement.locator('.hasDatepicker').click()
+
+        // Today's date
+
+        await frameElement.locator(".ui-datepicker-today").click();
+
+        await page.waitForTimeout(10000)
+
+        // Custom Date
+
+         const defaultDate = frameElement.locator('.ui-datepicker-today > a')
+
+         const currentDateValue = await defaultDate.getAttribute('data-date') // 28 as today
+
+         let customDate = parseInt((currentDateValue) - 3)
+
+         const element = `[date-date ='${customDate.toString()}']`
+
+         await frameElement.locator(element).click()
+
+         await page.waitForTimeout(5000)
+    })
+})
+```
+<br> Assertions - Hard Assertion and Soft Assertions<br>
+- Soft Assertions - It is a type of the assertions, whenever assertion got a failed that time can't stop the test execution. 
+
+- Hard Assertions - It is a type of the assertion, in that case if assertion got failed that time test execution automatically failed
+1. URL - toHaveURL()
+2. title - toHaveTitle()
+3. text - toHaveText()
+4. Editable - toBeEditable()
+5. Visible - toBeVisible()
+6. Enabled - toBeEnabled()
+7. Disabled - toBeDisabled()
+8. Empty - toBeEmpty()
+9. Count - toHaveCount()<br>
 
 
 
