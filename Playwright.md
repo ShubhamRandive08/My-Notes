@@ -2035,34 +2035,146 @@ export default defineConfig({
 
 ### **7. Benefits of Using JSON for Data-Driven Testing**
 
-✅ Easy to modify test data without changing test scripts  
-✅ Allows running the same test for multiple data sets  
-✅ Improves test maintainability
+ Easy to modify test data without changing test scripts  <br>
+ Allows running the same test for multiple data sets  <br>
+ Improves test maintainability<br>
+***4.2.2 Data Driven Testing Using CSV file<br>***
+  For that we can also install `csv-parse` dependencies ( Plugins )
+
+```
+npm install csv-parse
+```
+
+In Playwright, you can perform **data-driven testing** using a CSV file by reading data from the file and using it in test cases. Below is a step-by-step guide on how to achieve this:<br>
+
+---
+
+## **Steps to Perform Data-Driven Testing with CSV in Playwright<br>**
+
+1. **Install Required Modules**  <br>
+    Ensure you have Playwright installed:<br>
+
+    `npm install -D @playwright/test`
+    
+    Additionally, install the **csv-parser** package to read CSV files:<br>
+
+    `npm install csv-parser`
+    
+2. **Prepare a CSV File (data.csv)**  <br>
+    Create a CSV file (`data.csv`) with test data:
+```
+username,password
+user1@example.com,pass123
+user2@example.com,pass456
+
+```
+
+1. **Write the Playwright Test Using CSV Data<br>**
+    
+    - Read the CSV file using **fs** and **csv-parser<br>**
+    - Convert CSV data into a test data array<br>
+    - Use **test.each()** to run tests for each row of data<br>
+```
+const { test, expect } = require('@playwright/test');
+const fs = require('fs');
+const csvParser = require('csv-parser');
+
+// Function to read CSV data
+async function readCSV(filename) {
+    return new Promise((resolve, reject) => {
+        const results = [];
+        fs.createReadStream(filename)
+            .pipe(csvParser())
+            .on('data', (data) => results.push(data))
+            .on('end', () => resolve(results))
+            .on('error', (err) => reject(err));
+    });
+}
+
+test.describe('Login Tests with CSV Data', async () => {
+    let testData;
+
+    // Load CSV data before tests run
+    test.beforeAll(async () => {
+        testData = await readCSV('data.csv');
+    });
+
+    // Run test for each row in the CSV file
+    testData.forEach(({ username, password }) => {
+        test(`Login test for ${username}`, async ({ page }) => {
+            await page.goto('https://example.com/login');
+
+            // Fill in login form
+            await page.fill('#email', username);
+            await page.fill('#password', password);
+
+            // Click login button
+            await page.click('#login');
+
+            // Validate successful login (Example: checking URL or a welcome message)
+            await expect(page).toHaveURL(/dashboard/);
+        });
+    });
+});
+
+```
 
 
+Ex,
+```
+const {test, expect} = require('@playwright/test')
+
+import fs from 'fs'
+
+import path from 'path'
+
+import { parse } from 'csv-parse/sync'
 
 
+const records = parse(fs.readFileSync(path.join(__dirname, "../test-data/qa/testdata.csv")), {
 
+    columns: true,
 
+    skip_empty_lines: true,
 
+    relax_column_count: true,  // Allows inconsistent columns
 
+    relax_quotes: true,        // Ignores misplaced quotes instead of erroring out
 
+    trim: true,                // Removes unwanted spaces
 
+});
 
+for (const record of records) {
 
+    test(`Data Driven testing using CSV file in playwright ${record.TestCaseId}`, async ({page}) => {
 
+        await page.goto(process.env.URL)
 
+        // Search with keyboard
 
+        await page.locator('#APjFqb').click()
 
+        await page.locator('#APjFqb').fill(record.Skill1)
 
+        await page.locator('#APjFqb').press("Enter")
 
+        await page.waitForTimeout(5000)
 
+    })
 
+}
+```
 
+---
 
+## **Key Takeaways**<br>
 
+- **CSV Parser**: `csv-parser` is used to read the CSV file.<br>
+- **Dynamic Test Cases**: `testData.forEach()` iterates over test cases.<br>
+- **Playwright Testing**: Uses `@playwright/test` for UI automation.<br>
 
-
+***4.3  Run Tests on Multiple Environments  - QA, STAGE and PROD***
 
 
 
