@@ -36,6 +36,23 @@
 2.8 Watch mode<br>
 2.9 Test Traces, Actions metadata, Console, Log, Network<br>
 
+##### Retry, Repeat, Visual Testing and Parallelism
+3.1 Annotations - Skip Test, Only
+3.2 Grouping Tests
+3.3 Tag Test
+3.4 Repeat
+3.5 Retry
+3.6 Parallelism / Parallel Test Execution
+3.7 Parametrize Tests
+3.8 Visual Comparison - Visual Testing
+
+##### Page Object Model, Video, Environments, Data Driven Testing
+4.1 Env File
+4.2 Data Driven Testing
+4.3 Run Tests on Multiple Environments - QA, STAGE, PROD etc
+4.4 Page Object Model
+4.5 Video Recording
+4.6 Full Screen Browser
 
 #### Getting Started with Playwright<br>
 1.1 What is Playwright and advantages, Limitations<br>
@@ -1284,6 +1301,769 @@ This saves logs to `playwright-logs.txt`.
 |**Console Logs**|Capture browser console logs.|
 |**Network Logs**|Monitor HTTP requests and responses.|
 |**Log Files**|Save logs to a file for later analysis.|
+
+3.1 Annotations - Skip Test, Only<br>
+only - used for run only a single test cases
+
+|Annotation|Purpose|
+|---|---|
+|`test.skip()`|Skips the test (conditionally or unconditionally).|
+|`test.fixme()`|Marks a test as broken (won't fail the suite).|
+|`test.fail()`|Marks a test as expected to fail.|
+|`test.slow()`|Increases timeout for slow tests.|
+|`testInfo.annotations.push()`|Adds custom metadata to a test.|
+Ex, 
+```
+const {test, expect} = require('@playwright/test')
+
+const exp = require('constants')
+
+test.describe('Annotations', async () => {
+
+    test.skip('Validate assertions 1', async ({page}) => {
+
+        await page.goto('https://www.youtube.com/results?search_query=playwright+tutorial+full+course')
+
+        //assert URL
+
+        await expect(page).toHaveURL('https://www.youtube.com/results?search_query=playwright+tutorial+full+course')
+
+        // assert Title
+
+        await expect(page).toHaveTitle("playwright tutorial full course - YouTube")
+
+        // assert Text
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toHaveValue("playwright tutorial full course")
+
+        // assert editable enabled visible
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeEditable()
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeVisible()
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeEnabled();
+
+        // assert disabled empty count
+
+        // await expect(page.locator("//input[@name = 'search_query']").first()).toBeDisabled()
+
+        // await expect(page.locator("//input[@name = 'search_query']").first()).toBeEmpty() // Should be empty
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).not.toBeEmpty() // Should not empty
+
+        await expect(page.locator("//input[@name = 'search_query']")).toHaveCount(1)
+
+        await page.waitForTimeout(60)
+
+    })
+
+    test.only('Validate assertions 2', async ({page}) => {
+
+        await page.goto('https://www.youtube.com/results?search_query=playwright+tutorial+full+course')
+
+        //assert URL
+
+        await expect(page).toHaveURL('https://www.youtube.com/results?search_query=playwright+tutorial+full+course')
+
+        // assert Title
+
+        await expect(page).toHaveTitle("playwright tutorial full course - YouTube")
+
+        // assert Text
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toHaveValue("playwright tutorial full course")
+
+        // assert editable enabled visible
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeEditable()
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeVisible()
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeEnabled();
+
+        // assert disabled empty count
+
+        // await expect(page.locator("//input[@name = 'search_query']").first()).toBeDisabled()
+
+        // await expect(page.locator("//input[@name = 'search_query']").first()).toBeEmpty() // Should be empty
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).not.toBeEmpty() // Should not empty
+
+        await expect(page.locator("//input[@name = 'search_query']")).toHaveCount(1)
+        
+        await page.waitForTimeout(60)
+
+    })
+
+    test('Validate assertions 3', async ({page}) => {
+
+        await page.goto('https://www.youtube.com/results?search_query=playwright+tutorial+full+course')
+
+        //assert URL
+
+        await expect(page).toHaveURL('https://www.youtube.com/results?search_query=playwright+tutorial+full+course')
+
+        // assert Title
+
+        await expect(page).toHaveTitle("playwright tutorial full course - YouTube")
+
+        // assert Text
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toHaveValue("playwright tutorial full course")
+
+        // assert editable enabled visible
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeEditable()
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeVisible()
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).toBeEnabled();
+
+        // assert disabled empty count
+
+        // await expect(page.locator("//input[@name = 'search_query']").first()).toBeDisabled()
+
+        // await expect(page.locator("//input[@name = 'search_query']").first()).toBeEmpty() // Should be empty
+
+        await expect(page.locator("//input[@name = 'search_query']").first()).not.toBeEmpty() // Should not empty
+
+        await expect(page.locator("//input[@name = 'search_query']")).toHaveCount(1)
+
+        await page.waitForTimeout(60)
+
+    })
+
+})
+```
+
+3.2 Group Tests <br>
+For run the test in group we should be use the `describe()` method<br>
+3.3 Tag Test<br>
+In that case we add tag to test cases and execute that tests we using `--grep`  and then write the tag name
+
+Syntax
+```
+npx playwright test --grep 'Tag1'
+```
+
+Ex, 
+```
+// Include playwright module
+
+const { test, expect } = require('@playwright/test')  // test - It is used to create the test cases , expect - to validate or to assert the web dev. or any text.
+
+// Write a test
+
+// page - page is the object with the help of that we can interact with the browser.
+
+test('Test 1 @Tag1', async ({ page }) => {
+
+    await page.goto('https://www.youtube.com/')
+
+    // Go to URL
+
+    // Search with keywords
+
+    await page.getByRole('combobox', { name: 'Search' }).click();
+
+    await page.getByRole('combobox', { name: 'Search' }).fill('cypress by testers talk');
+
+    await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeEnabled();
+
+    await page.getByRole('button', { name: 'Search', exact: true }).click();
+
+    await page.waitForTimeout(5000);
+
+    //Click on playlist
+
+    await page.getByRole('link', { name: 'Cypress by Testers Talk☑️' }).click();
+
+    // Validate title
+
+    await expect(page).toHaveTitle('Cypress Tutorial Full Course | Cypress Automation | Learn Cypress in 5 Hrs - YouTube');
+    
+    await page.close();
+
+})
+
+test('Test 2 @Tag2', async ({ page }) => {
+
+    await page.goto('https://www.youtube.com/')
+
+    // Go to URL
+
+    // Search with keywords
+
+    await page.getByRole('combobox', { name: 'Search' }).click();
+
+    await page.getByRole('combobox', { name: 'Search' }).fill('cypress by testers talk');
+
+    await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeEnabled();
+
+    await page.getByRole('button', { name: 'Search', exact: true }).click();
+
+    await page.waitForTimeout(5000);
+
+    //Click on playlist
+
+    await page.getByRole('link', { name: 'Cypress by Testers Talk☑️' }).click();  
+
+    // Validate title
+
+    await expect(page).toHaveTitle('Cypress Tutorial Full Course | Cypress Automation | Learn Cypress in 5 Hrs - YouTube');
+
+    await page.close();
+
+})
+
+test('Test 3 @Tag1', async ({ page }) => {
+
+    await page.goto('https://www.youtube.com/')
+
+    // Go to URL
+
+    // Search with keywords
+
+    await page.getByRole('combobox', { name: 'Search' }).click();
+
+    await page.getByRole('combobox', { name: 'Search' }).fill('cypress by testers talk');
+
+    await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeEnabled();
+
+    await page.getByRole('button', { name: 'Search', exact: true }).click();
+
+    await page.waitForTimeout(5000);
+
+    //Click on playlist
+
+    await page.getByRole('link', { name: 'Cypress by Testers Talk☑️' }).click();
+
+    // Validate title
+
+    await expect(page).toHaveTitle('Cypress Tutorial Full Course | Cypress Automation | Learn Cypress in 5 Hrs - YouTube');
+    
+    await page.close();
+
+})
+```
+
+Run The Above test cases with tag name
+```
+npx playwright test --grep 'Tag1'
+```
+
+3.4 Repeat the test<br>
+For running the test multiple time we use following commands, <br>
+```
+npx playwright test test_name --repeat-each = 2
+```
+
+Ex, 
+```
+ npx playwright test assertions.spec.js --repeat-each=2
+```
+
+
+3.5 How to `Retry` test<br>
+Simply go in te `playwright.config.js` file and change the value of `retries: process.env.CI ? 2 : 0,
+
+Ex, 
+```
+retries: process.env.CI ? 2 : 1, // This retry 1 time
+retries: process.env.CI ? 2 : 2, // This retry 2 times
+```
+
+
+3.6 Parallelism / Parallel Test Execution<br>
+Playwright supports **parallel test execution** to speed up test runs. You can run tests in parallel using **multiple workers** or within a single file using `test.describe.parallel()`.
+
+Syntax
+```
+npx playwright test test_name --worker = no_of_worker
+```
+
+Ex,
+```
+npx playwright test group.spec.js --worker = 3 // This is runs 3 test cases at a same time
+```
+
+
+## **1. Run Tests in Parallel (Default Behavior)<br>**
+
+Playwright runs tests in parallel by default using multiple **workers** (separate processes).<br>
+
+### **Run Tests in Parallel<br>**
+
+`npx playwright test`
+
+This automatically runs tests in parallel, utilizing the available CPU cores.<br>
+
+### **Control the Number of Parallel Workers**<br>
+
+By default, Playwright detects the number of CPU cores and assigns workers accordingly. <br>You can manually set the number of workers:<br>
+
+`npx playwright test --workers=4`
+
+Or, set it in `playwright.config.js`:
+```
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  workers: 4,  // Set the number of parallel workers
+});
+
+```
+
+---
+
+## **2. Parallel Execution in a Single File<br>**
+
+By default, tests in a single file run **sequentially**. To make them run in parallel, use `test.describe.parallel()`:<br>
+
+```
+import { test, expect } from '@playwright/test';
+
+test.describe.parallel('Parallel Test Suite', () => {
+
+  test('Test A', async ({ page }) => {
+    await page.goto('https://example.com');
+    await expect(page).toHaveTitle('Example Domain');
+  });
+
+  test('Test B', async ({ page }) => {
+    await page.goto('https://example.com/about');
+    await expect(page).toHaveURL(/about/);
+  });
+
+});
+```
+
+###  Key Points:
+
+- Tests in `test.describe.parallel()` run **concurrently**.<br>
+- Each test gets a separate browser context.<br>
+
+---
+
+## **3. Disable Parallel Execution (Force Sequential)**
+
+If you want to **run tests one after another**, use `--workers=1`:<br>
+
+`npx playwright test --workers=1`
+
+Or, use `test.describe.serial()`:<br>
+
+```
+test.describe.serial('Serial Test Suite', () => {
+  test('Step 1', async ({ page }) => {
+    await page.goto('https://example.com');
+  });
+
+  test('Step 2', async ({ page }) => {
+    await page.goto('https://example.com/about');
+  });
+});
+```
+
+- **`test.describe.serial()`** ensures that tests **run sequentially in the same worker**.
+- Useful for dependent tests.<br>
+
+---
+
+## **4. Parallelism in CI/CD<br>**
+
+For **CI/CD pipelines**, you can distribute tests across multiple machines using **sharding**:<br>
+
+`npx playwright test --shard=1/3`<br>
+
+- This command runs **only 1/3rd of the tests** on a given machine.<br>
+- Used when **splitting tests across multiple CI agents**.<br>
+
+---
+
+## **5. Run Specific Tests in Parallel<br>**
+
+You can mark **only certain tests** to run in parallel using `test.parallel()`:
+```
+test.parallel('Test runs in parallel', async ({ page }) => {
+  await page.goto('https://example.com');
+});
+```
+
+---
+
+## **6. Best Practices for Parallel Testing<br>**
+
+ **Use `test.describe.parallel()`** for independent tests.  <br>
+ **Use `test.describe.serial()`** for dependent tests.  <br>
+ **Avoid using shared state between tests** (each test should be isolated).  <br>
+ **Increase `workers` in CI/CD** for better performance.  <br>
+ **Use `sharding`** when running tests on multiple machines.<br>
+
+
+3.8 Parametrize Tests in Playwright <br>
+In **Playwright Test**, you can use **parameterized tests** to run the same test with different data inputs. This helps avoid duplicate code and improves test coverage.<br>
+```
+// Include playwright module
+
+const { test, expect } = require('@playwright/test')  // test - It is used to create the test cases , expect - to validate or to assert the web dev. or any text.
+
+// Write a test
+
+// page - page is the object with the help of that we can interact with the browser.
+
+const testPara = ['Playwright by testers talk', 'Cypress by testers talk', 'Javascript by testers talk']
+
+for (const searchKeyword of testPara) {
+
+    test(`Parameterize test in playwright ${searchKeyword}`, async ({ page }) => {
+
+        await page.goto('https://www.youtube.com/')
+
+        // search with keyword
+
+        await page.getByPlaceholder("Search").click()
+
+        await page.getByPlaceholder("Search").fill(searchKeyword)
+
+        await page.getByPlaceholder("Search").press("Enter")
+
+        await page.waitForTimeout(5000)
+
+    })
+}
+```
+
+3.8 Visual Comparison - Visual Testing<br>
+Visual comparison and visual testing in Playwright help ensure that web applications render correctly across different environments, browsers, and screen sizes. Here’s a breakdown of how visual testing works in Playwright:
+
+### **1. Visual Testing in Playwright** <br>
+
+Playwright supports screenshot-based testing to compare the UI against a baseline image. This helps catch unintended UI changes due to CSS updates, responsive issues, or browser inconsistencies.<br>
+
+### **2. How Visual Comparison Works<br>**
+
+- **Baseline Image:** The test captures a reference (baseline) screenshot.
+- **Current Screenshot:** A new screenshot is taken during test execution.
+- **Image Comparison:** Playwright compares the new screenshot with the baseline.
+- **Threshold Configuration:** Small tolerances can be set to account for minor differences like anti-aliasing.<br>
+
+### **3. Implementing Visual Testing in Playwright<br>**
+
+Playwright provides built-in methods for visual comparisons:<br>
+
+#### **Snapshot Testing<br>
+```
+import { test, expect } from '@playwright/test';
+
+test('visual comparison test', async ({ page }) => {
+    await page.goto('https://example.com');
+    expect(await page.screenshot()).toMatchSnapshot('homepage.png');
+});
+
+```
+
+
+- The first run generates a baseline screenshot.<br>
+- On subsequent runs, Playwright compares new screenshots to the baseline.<br>
+
+#### **Full Page Screenshot Comparison**
+
+```
+test('full-page visual regression test', async ({ page }) => {
+    await page.goto('https://example.com');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot('fullpage.png');
+});
+
+```
+### **4. Handling Visual Differences<br>**
+
+- **Set Tolerances:** Allow small pixel differences.<br>
+- **Ignore Dynamic Elements:** Hide or mask elements like timestamps, ads, or animations.<br>
+- **Update Baselines:** When intentional UI changes occur, update the snapshot using `--update-snapshots`.<br>
+
+### **5. Tools for Enhanced Visual Testing<br>**
+
+- **Playwright Test Built-in Features** – Basic screenshot comparison.<br>
+- **Third-party Tools:** Integrate Playwright with tools like Applitools, Percy, or Loki for AI-powered visual testing. <br>
+
+
+4.1 Env file in Playwright
+
+In Playwright, you can use **`.env`** files to manage environment variables, such as API keys, base URLs, or authentication credentials. Here’s how you can use them effectively. <br>
+
+---
+
+### **1. Install dotenv Package**<br>
+
+Playwright does not have built-in support for `.env` files, so you need to install the `dotenv` package to load environment variables.<br>
+
+`npm install dotenv`
+
+---
+
+### **2. Create a `.env` File<br>**
+```
+BASE_URL=https://example.com
+API_KEY=your_secret_api_key
+USERNAME=testuser
+PASSWORD=supersecret
+
+```
+
+Inside your project root, create a `.env` file and define your environment variables:<br>
+
+---
+
+### **3. Load `.env` Variables in Playwright Tests**
+
+Modify your `playwright.config.ts` or `playwright.config.js` to load `.env` variables using `dotenv`:
+```
+import { defineConfig } from '@playwright/test';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
+
+export default defineConfig({
+  use: {
+    baseURL: process.env.BASE_URL, // Use env variable
+    headless: true,
+  },
+});
+
+```
+
+---
+
+### **4. Access Environment Variables in Tests**
+
+In your test files, access the environment variables using `process.env`:
+
+```
+import { test, expect } from '@playwright/test';
+
+test('Login test using environment variables', async ({ page }) => {
+    await page.goto(process.env.BASE_URL!);
+    await page.fill('#username', process.env.USERNAME!);
+    await page.fill('#password', process.env.PASSWORD!);
+    await page.click('#login');
+    
+    await expect(page).toHaveURL(process.env.BASE_URL + '/dashboard');
+});
+
+```
+---
+
+### **5. Using Different `.env` Files for Multiple Environments**
+
+For different environments (e.g., development, staging, production), create multiple `.env` files:
+
+- `.env.development`
+- `.env.staging`
+- `.env.production`
+
+Then, load the specific file in `playwright.config.ts`:
+```
+import dotenv from 'dotenv';
+
+// Load the correct .env file based on NODE_ENV
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
+
+console.log(`Running tests in ${process.env.NODE_ENV} mode`);
+
+```
+
+Run tests with different environments:
+
+
+`NODE_ENV=staging npx playwright test`
+
+---
+
+### **6. Secure Your `.env` File**
+
+- **Add `.env` to `.gitignore`** to prevent committing secrets to Git:
+
+    `.env .env.*`
+    
+- **Use environment variables in CI/CD** instead of storing sensitive data in `.env` files.
+    
+
+---
+
+### **7. Alternative: Use Playwright’s `test.use()`**
+
+Instead of `.env` files, you can also pass environment-specific values using Playwright’s `test.use()`:
+
+`test.use({ baseURL: process.env.BASE_URL });`
+
+
+
+4.2 Data Driven Testing
+
+ 4.2.1 Data Driven Testing Using JSON File
+ ### **Data-Driven Testing in Playwright using a JSON File**
+
+Data-driven testing in Playwright allows you to run the same test with multiple sets of data stored in a JSON file. This approach helps validate different scenarios efficiently.
+
+---
+
+### **1. Create a JSON File for Test Data**
+
+First, create a `data.json` file in your Playwright project:
+
+```
+[
+  {
+    "username": "user1",
+    "password": "password123"
+  },
+  {
+    "username": "user2",
+    "password": "password456"
+  }
+]
+
+```
+
+---
+
+### **2. Import and Use the JSON Data in Playwright Tests**
+
+Modify your test file (e.g., `login.spec.ts`) to import and use the JSON data.
+
+```
+import { test, expect } from '@playwright/test';
+import testData from './data.json'; // Import JSON data
+
+testData.forEach(({ username, password }) => {
+  test(`Login test with username: ${username}`, async ({ page }) => {
+    await page.goto('https://example.com/login');
+
+    await page.fill('#username', username);
+    await page.fill('#password', password);
+    await page.click('#login');
+
+    // Check if login was successful
+    await expect(page).toHaveURL('https://example.com/dashboard');
+  });
+});
+
+```
+
+
+---
+
+### **3. Alternative: Using `test.describe()` for Multiple Data Sets**
+
+If you have multiple test cases using the same data, you can use `test.describe()`:
+
+```
+test.describe('Login Tests', () => {
+  for (const { username, password } of testData) {
+    test(`Login test with username: ${username}`, async ({ page }) => {
+      await page.goto('https://example.com/login');
+
+      await page.fill('#username', username);
+      await page.fill('#password', password);
+      await page.click('#login');
+
+      await expect(page).toHaveURL('https://example.com/dashboard');
+    });
+  }
+});
+
+```
+
+---
+
+### **4. Using `test.step()` for Better Debugging**
+
+To improve test clarity, use `test.step()`:
+
+```
+testData.forEach(({ username, password }) => {
+  test(`Login test for ${username}`, async ({ page }) => {
+    await page.goto('https://example.com/login');
+
+    await test.step('Enter credentials', async () => {
+      await page.fill('#username', username);
+      await page.fill('#password', password);
+    });
+
+    await test.step('Click login', async () => {
+      await page.click('#login');
+    });
+
+    await test.step('Verify login success', async () => {
+      await expect(page).toHaveURL('https://example.com/dashboard');
+    });
+  });
+});
+
+```
+
+---
+
+### **5. Running the Playwright Tests**
+
+Run Playwright tests as usual:
+
+`npx playwright test`
+
+---
+
+### **6. Using JSON Data in `test.use()` for Global Configurations**
+
+If your JSON contains environment-specific configurations, you can use it in `playwright.config.ts`:
+
+```
+import { defineConfig } from '@playwright/test';
+import configData from './config.json';
+
+export default defineConfig({
+  use: {
+    baseURL: configData.baseURL
+  },
+});
+
+```
+
+---
+
+### **7. Benefits of Using JSON for Data-Driven Testing**
+
+✅ Easy to modify test data without changing test scripts  
+✅ Allows running the same test for multiple data sets  
+✅ Improves test maintainability
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
