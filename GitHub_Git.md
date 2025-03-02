@@ -242,7 +242,7 @@ main - This is name of branch <br>
      ![](/Image/4203.png)<br>
 
 - Prune deleted remote branches - Removes references to branches that no longer exist on the remote.<br>
-     `git remote prune <remot<br>e_name>`  <br>
+     `git remote prune <remote_name>`  <br>
 	 Ex , `git remote prune origin`<br>
      
 

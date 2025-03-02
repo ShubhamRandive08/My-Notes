@@ -1090,8 +1090,200 @@ test.describe('Assertions', async () => {
 })
 ```
 
+2.8 Watch Mode in Playwright<br>
+In Playwright, **watch mode** refers to a development mode that automatically reruns tests when it detects file changes. This is useful for rapid debugging and development.<br>
+
+### **How to Use Watch Mode in Playwright**<br>
+
+Playwright does not have a built-in `--watch` flag like Jest, but you can achieve similar functionality using `--ui` mode or external tools.<br>
+
+#### **1. Using Playwright Test UI Mode (Recommended)<br>**
+
+Playwright provides a **UI mode** that includes a watch feature:<br>
+```
+npx playwright test --ui
+```
+
+This opens an interactive UI where:<br>
+
+- Tests rerun automatically when you edit test files.<br>
+- You can click to rerun tests individually.<br>
+- Debugging tools (e.g., time travel, trace viewer) are available.<br>
+
+2.9 Test Traces, Actions, Metadata, Console, Log, Network<br>
+Playwright provides powerful debugging and tracing tools, including **Test Traces, Actions, Metadata, Console Logs, and Network Logs**. These help developers analyze test execution, debug failures, and optimize automation.
+
+---
+
+## **1. Test Traces (Tracing)**<br>
+
+Tracing in Playwright captures detailed execution steps, including network requests, console logs, and screenshots.<br>
+
+### **Enable Tracing<br>**
+
+Add tracing in your Playwright test configuration (`playwright.config.ts`):
+```
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  use: {
+    trace: 'on', // 'on', 'off', 'retain-on-failure', 'on-first-retry'
+  },
+});
+
+```
 
 
+Or, enable tracing dynamically in a test:
+```
+import { test } from '@playwright/test';
+
+test.beforeEach(async ({ page }, testInfo) => {
+  await testInfo.attach('trace', { path: 'trace.zip' });
+  await page.context().tracing.start({ screenshots: true, snapshots: true });
+});
+
+test.afterEach(async ({ page }) => {
+  await page.context().tracing.stop({ path: 'trace.zip' });
+});
+
+```
+### **View Trace Files<br>**
+
+1. Run tests:
+```
+npx playwright test
+```
+
+    
+1. Open the trace file:<br>
+```
+npx playwright show-trace trace.zip
+```
+    
+1. The UI will display steps, actions, console logs, network requests, and more.<br>
+
+---
+
+## **2. Actions (Step Recorder)<br>**
+
+Playwright records actions performed during a test for debugging.<br>
+
+### **Enable Action Recorder**<br>
+
+Run the following command to open Playwright Inspector:<br>
+
+`npx playwright codegen example.com`
+
+It will:<br>
+
+- Open a browser.<br>
+- Record interactions (clicks, inputs, navigations).<br>
+- Generate Playwright test code.<br>
+
+---
+
+## **3. Metadata**<br>
+
+Metadata includes information like test duration, retries, and environment details.<br>
+
+### **Adding Metadata**<br>
+
+You can add custom metadata to tests:
+```
+import { test } from '@playwright/test';
+
+test('example test', async ({ page }, testInfo) => {
+  console.log(`Running test: ${testInfo.title}`);
+  console.log(`Worker: ${testInfo.workerIndex}`);
+  console.log(`Retries: ${testInfo.retry}`);
+});
+
+```
+
+
+Metadata is included in Playwright reports:
+
+`npx playwright test --reporter=json`
+
+---
+
+## **4. Console Logs**<br>
+
+Playwright captures browser console logs.<br>
+
+### **Enable Console Logging**
+```
+import { test } from '@playwright/test';
+
+test('console log test', async ({ page }) => {
+  page.on('console', (msg) => console.log(`Console Log: ${msg.text()}`));
+  await page.goto('https://example.com');
+});
+
+```
+
+This captures logs from the browser console.<br>
+
+---
+
+## **5. Network Logs**<br>
+
+Playwright records network requests & responses.
+```
+test('track network requests', async ({ page }) => {
+  page.on('request', (req) => console.log(`Request: ${req.url()}`));
+  page.on('response', (res) => console.log(`Response: ${res.url()} - ${res.status()}`));
+  
+  await page.goto('https://example.com');
+});
+
+```
+### **Capture Network Requests**
+
+
+---
+
+## **6. Log Files**<br>
+
+You can store logs in a file using `fs` in Node.js.<br>
+
+Example:
+```
+import fs from 'fs';
+
+test('save logs to file', async ({ page }) => {
+  let logData = '';
+
+  page.on('console', (msg) => {
+    logData += `Console Log: ${msg.text()}\n`;
+  });
+
+  page.on('response', (res) => {
+    logData += `Response: ${res.url()} - ${res.status()}\n`;
+  });
+
+  await page.goto('https://example.com');
+
+  fs.writeFileSync('playwright-logs.txt', logData);
+});
+
+```
+
+This saves logs to `playwright-logs.txt`.
+
+---
+
+## **Summary Table**<br>
+
+|Feature|Purpose|
+|---|---|
+|**Tracing**|Capture test steps, network, console, and metadata.|
+|**Actions**|Record user interactions & generate test code.|
+|**Metadata**|Get test details like retries, duration, and worker info.|
+|**Console Logs**|Capture browser console logs.|
+|**Network Logs**|Monitor HTTP requests and responses.|
+|**Log Files**|Save logs to a file for later analysis.|
 
 
 
