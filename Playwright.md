@@ -2176,7 +2176,203 @@ for (const record of records) {
 
 ***4.3  Run Tests on Multiple Environments  - QA, STAGE and PROD***
 
+Running tests in multiple environments using Playwright is essential for verifying application behavior across different setups, such as **staging, production, local, or different browsers**. You can achieve this using Playwright's **configuration files, environment variables, and projects**.
 
+---
+
+## **Approach 1: Use Playwright Config to Define Multiple Environments<br>**
+
+Playwright allows defining multiple **projects** in `playwright.config.ts` to run tests in different browsers or environments.<br>
+
+### **Example: Running in Staging & Production with Different Browsers**
+
+Modify `playwright.config.ts`:
+```
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  use: {
+    baseURL: process.env.BASE_URL || 'https://staging.example.com', // Default to staging
+  },
+  projects: [
+    {
+      name: 'Chromium - Staging',
+      use: {
+        browserName: 'chromium',
+        baseURL: 'https://staging.example.com',
+      },
+    },
+    {
+      name: 'Firefox - Production',
+      use: {
+        browserName: 'firefox',
+        baseURL: 'https://example.com',
+      },
+    },
+    {
+      name: 'WebKit - Local',
+      use: {
+        browserName: 'webkit',
+        baseURL: 'http://localhost:3000',
+      },
+    },
+  ],
+});
+
+```
+
+
+Tests for All Environments**<br>
+
+`npx playwright test`
+
+#### **Run Tests for a Specific Environment**
+
+`npx playwright test --project="Chromium - Staging"`
+
+---
+
+## **Approach 2: Use Environment Variables<br>**
+
+You can pass the environment at runtime using `.env` files or command-line variables.<br>
+
+#### **Set Up `.env` Files**
+
+Create separate `.env` files for different environments:
+
+**`.env.staging`**
+
+`BASE_URL=https://staging.example.com`
+
+**`.env.production`**
+
+`BASE_URL=https://example.com`
+
+#### **Load Environment Variables in `playwright.config.ts`**
+```
+import { defineConfig } from '@playwright/test';
+import dotenv from 'dotenv';
+
+// Load environment variables based on NODE_ENV
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'staging'}` });
+
+export default defineConfig({
+  use: {
+    baseURL: process.env.BASE_URL, // Load from .env file
+  },
+});
+
+```
+
+#### **Run Tests in Different Environments<br>**
+
+`NODE_ENV=production npx playwright test NODE_ENV=staging npx playwright test`
+
+---
+
+## **Approach 3: Use Command-Line Arguments to Pass Environments**<br>
+
+Modify `playwright.config.ts` to read from CLI args:
+```
+const environment = process.env.ENV || 'staging';
+
+export default defineConfig({
+  use: {
+    baseURL: environment === 'production'
+      ? 'https://example.com'
+      : 'https://staging.example.com',
+  },
+});
+```
+
+
+Run with:<br>
+
+`ENV=production npx playwright test ENV=staging npx playwright test<br>`
+
+---
+
+## **Best Practices**
+
+ - **Use `projects`** in `playwright.config.ts` for different browsers/environments  <br>
+ - **Use environment variables (`.env` files)** to avoid hardcoding URLs  <br>
+ - **Use CI/CD pipelines** to trigger tests per environment  <br>
+ - **Run parallel tests** across environments using Playwright’s concurrency<br>
+
+## ***What is POM ( Page object model )***<br>
+- POM is a design pattern to create object repository for web page elements <br>
+- For each web page there will be corresponding page class<br>
+- Page class contains all the web page elements of that page and also it contains page methods which perform operations on those web elements<br>
+
+***What is advantages of POM***<br>
+- Code will be cleaner and easier to understand<br>
+- Object repository is independent of test scripts<br>
+- Test Script will be optimized because of elements respective abstraction methods in page classes<br>
+
+***Disadvantages<br>***
+- Time and Effort<br>
+- Specific to project<br>
+
+## **Why Use POM in Playwright?**<br>
+
+- **Encapsulation:** Keeps page structure separate from test logic.<br>
+- **Reusability:** Common actions (click, input, navigation) can be reused across tests.<br>
+- **Maintainability:** Changes in UI require updates only in the page class, not in every test.<br>
+- **Readability:** Test scripts remain clean and focused on business logic.<br>
+
+---
+
+## **How to Implement POM in Playwright<br>**
+
+1. **Create a Page Object Class<br>**
+2. **Define Methods for Page Actions<br>**
+3. **Use the Page Object in Tests<br>**
+
+Page Object Class<br>
+```
+const { expect, test } = require('@playwright/test')
+
+exports.LoginPage = class LoginPage {
+    constructor(page) {
+        this.page = page;
+        this.usernameInput = page.locator('#username');
+        this.passwordInput = page.locator('#password');
+        this.loginButton = page.locator('button[type="submit"]');
+    }
+
+    async navigate() {
+        await this.page.goto('https://example.com/login');
+    }
+
+    async login(username, password) {
+        await this.usernameInput.fill(username);
+        await this.passwordInput.fill(password);
+        await this.loginButton.click();
+    }
+}
+
+```
+
+
+login.spec.js
+
+```
+const { test, expect } = require('@playwright/test');
+const LoginPage = require('./LoginPage');
+
+test('Login Test', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    
+    await loginPage.navigate();
+    await loginPage.login('testuser', 'password123');
+
+    // Example assertion after login
+    await expect(page.locator('#welcome-message')).toHaveText('Welcome, testuser!');
+});
+
+```
+
+***How to maximize browser in playwright***
 
 
 
@@ -2188,4 +2384,3 @@ Tags:  #playwright #automation<br>
 Author : Shubham Randive<br>
 
 ---
-

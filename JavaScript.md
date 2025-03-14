@@ -637,6 +637,14 @@ try {
 ![](/Image/10.png)
 
 
+### **Key Differences **
+
+|Feature|`for...in`|`for...of`|
+|---|---|---|
+|Iterates over|**Keys (property names)**|**Values (elements of iterable)**|
+|Works with Objects?|✅ Yes|❌ No|
+|Works with Arrays?|⚠️ Yes, but not recommended|✅ Yes|
+|Works with Strings?|❌ No|✅ Yes|
 
 ---
 ⓘ Metadata <br>

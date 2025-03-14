@@ -57,3 +57,31 @@ Performance testing is a type of software testing that evaluates how an applicat
 - Click on *`Click on GET STARTED WITH K6`*
 - Go to `SET UP` - Go to `INSTALL K6` Then Click On `the latest official installer`
 
+Metric Type :<br>
+Metric     Type <br>
+
+Rate ---> rate <br>
+
+Counter ---> count  <br>
+
+Tread --> min, max, p(90), p(95) <br>
+
+Gorge ---> value <br>
+
+**Tags**<br>
+Tags are a powerful way categorize your k6 entities and filter test results<br>
+System tag : `method, status, proto, `
+Other defined tag  ( Custom Tags ): The tag is created by user for there requirement
+<br>
+05/03/2025
+<br>
+Organizing request in Group in K6 :<br>
+- Group - 
+
+
+06 / 03 / 2025 <br>
+Threshold for group : <br>
+
+Group duration : <br>
+Structur 
+
