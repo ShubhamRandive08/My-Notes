@@ -230,3 +230,36 @@ user.greet()
 ```
 O/P : Hello, My name is Alice
 ```
+
+
+#### NOTE : In TS, `console.log()` can be used for the print the any value or any statement<br>
+
+
+##### **If we want to create the our custom type that time we can use 'type' keyword and also make first latter of custom type is Capital.<br>**
+Ex,
+
+```TS
+type User = {
+	name : string;
+	age : number;
+}
+
+let user : User {
+	name : 'Shubham',
+	age : 21
+}
+```
+
+**If we want to create the type with optional value simply we can add ? ( Question Mark ) before the colon { : }**<br>
+Ex,
+
+```TS
+type User = {
+	name ?: string;
+	age ?: number;
+}
+```
+
+<br>
+When we add the ? ( Question Mark ) here then into that there are two possible types such as **provided type** or **undefined**
+<br>
