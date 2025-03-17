@@ -263,3 +263,111 @@ type User = {
 <br>
 When we add the ? ( Question Mark ) here then into that there are two possible types such as **provided type** or **undefined**
 <br>
+#### Function is TS<Br>
+```TS
+function fun_name ( parameters ) : funcion_type {
+	.........................
+	.........................    This is the body of the function
+	.........................
+}
+```
+
+Ex,
+```TS
+function login(){
+	console.log('Hello')
+}
+
+login()
+```
+
+Ex,
+Question : Create the function to perform the addition of the two numbers.
+
+```TS
+let n1 : number = 40;
+let n2 : number = 20;
+
+function add(n1,n2) : number {
+	return n1 + n2;
+}
+
+console.log('The additon of the two numbers : ' + add(n1,n2))
+```
+
+```OUTPUT
+This additon of the two numbers : 60
+```
+<br>
+Ex, 
+Create the function with the custom data type / aliases type<br>
+```TS
+type User = {
+	name : string;
+	age : number;
+	address : string;
+	gender : string;
+}
+
+function userData (user : User) : User {
+	return user;
+}
+
+console.log(userData({ name : 'Shubham Randive' , age : 21, address : 'Chakreshwarawadi' , gender : 'male'}))
+```
+
+```OUTPUT
+{
+	name : 'Shubham Randive',
+	age : 21,
+	address : 'Chakreshwarawadi',
+	gender : 'male'
+}
+```
+<br><br>
+| - This symbol is used for the provide two or more than two type s for the variable<br>Ex,
+```TS
+let str : string | number
+
+str = 'Shubham'
+str = 2334
+```
+<br>
+#### Interfaces :
+- Interface is like the sheaf of the any object.
+- The time of the creation of the interface, the First letter of the name of the interface must be `Capital` because of the reason it is the rule for that.
+- For creation of the interface we also use the `interface` keyword
+<br>
+Ex,
+```TS
+interface interface_name {
+	...................................
+	................................... Block of the code
+	...................................
+}
+```
+
+```TS
+interface Transaction {
+	payerAccountNo : number;
+	payeeAccountNo : number;
+}
+```
+
+**We also use the interface as a type of the any other variable or method**
+<br>
+Ex,
+```TS
+interface Transaction {
+	payerAccountNo : number;
+	payeeAccountNo : number;
+}
+
+interface BankAccout {
+	accoutNumber : number;
+	accoutHolder : string;
+	balence : number;
+	isActive : boolern;
+	transaction : Transaction;
+}
+```
