@@ -334,9 +334,14 @@ str = 2334
 ```
 <br>
 #### Interfaces :
-- Interface is like the sheaf of the any object.
+
+- Interface is like the shape of the any object.
+- They support optional ( ? ) properties,  read-only properties, function signature and index signatures.
+- Interfaces can extend other interface for reusability.
+- Classes can implement interfaces to enforce structure.
 - The time of the creation of the interface, the First letter of the name of the interface must be `Capital` because of the reason it is the rule for that.
 - For creation of the interface we also use the `interface` keyword
+- In TS, interfaces are used to define the structure of the object, ensuring type safety and consistency. They act as contracts that specify what properties and methods an object should have.
 <br>
 Ex,
 ```TS
@@ -370,4 +375,106 @@ interface BankAccout {
 	isActive : boolern;
 	transaction : Transaction;
 }
+```
+<br>
+Interface with functions<br>
+```TS
+interface MathOperation {
+	(a : number , b : number) : number ;
+}
+
+const add : MathOpration = (x,y) => x + y;
+
+console.log(add(5,10))
+```
+
+
+ Extending interfaces
+
+
+```TS
+  interface Person {
+    name : string;
+    age : number;
+}
+
+interface Employee extends Person{
+    empId : number
+}
+
+const emp : Employee = {
+    empId : 30,
+    name : 'Shubham',
+    age : 32
+}
+
+console.log(emp)
+```
+
+OUTPUT :
+
+```
+{ empId: 30, name: 'Shubham', age: 32 }
+```
+
+Interfaces with Classes
+
+```TS
+interface Animal {
+	name : string;
+	makeSound() : void
+}
+
+class Dog implements Animal {
+	name : string;
+
+	constructor(name : string){
+		this.name = name;
+	}
+makeSound() {
+	console.log("Woof! Woof!")
+}
+}
+
+const dog = new Dog("Buddy");
+dog.makeSound(); // O/P : Woof! Woof
+```
+
+Using read-only properties 
+
+```TS
+interface Car {
+	readonly model : string;
+	year : number
+}
+
+const myCar : Car = { 
+	model : 'Tesla',
+	year : 2024,
+}
+
+// myCar.model = 'BMW' // Error : Cannot assign to model because it is a read only property
+```
+
+Intersection Types vs Extending Interfaces
+
+You can also combine multiple interfaces using intersection types ( & )
+
+```TS
+interface A {
+	propA : string;
+}
+
+interface B {
+	propB : number;
+}
+
+type Combine : A $ B ;
+
+const example : Combine = {
+	propA : "Hellow",
+	proB : 44,
+}
+
+console.log(example)
 ```
