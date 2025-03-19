@@ -4,12 +4,18 @@
 
 ![](/Image/api_test.png)
 
+##### Why API testing is required ?
+- API testing is crucial for ensuring the smooth functioning and overall quality of web applications that rely on Application Programming Interface ( APIs )
+- It checks if the API delivers the correct data in the expected format when provided with valid inputs
+- API Testing also involves invalid inputs to ensure the API handles errors gracefully and returns appropriate messages.
+
 Rest API : 
 - Most common API's are Rest API's
 - Rest provide some rules and regulation to create API.
 - Playwright can be used to get access to the REST API of your application.
 
-##### BaseURL : The base URL ( Uniform recourse locator ) is the starting point for the accessing the API's resources. The base URL typically includes the protocols. ( eg. HTTP or HTTPS ) domain name and optionally a version.
+##### BaseURL : 
+- The base URL ( Uniform recourse locator ) is the starting point for the accessing the API's resources. The base URL typically includes the protocols. ( eg. HTTP or HTTPS ) domain name and optionally a version.
 
 Ex,
 
@@ -95,4 +101,131 @@ BaseURL + Resour + Query / Path Parameters
      - 401 ( Unauthorized ) : The request requires authentication and the client's credential's are missing or invalid.
      - 404 ( Not Found ) : The requested resource could not fount on the server
      - 500 ( Internal Server error ) : The server encountered and unexpected condition that prevented that prevented it from fulfilling the request.
+
+
+#### My Personal JWT Authentication Notes :
+- Firstly we should create the auth token and then create the method to verify that token 
+
+Ex,
+
+```TS
+// This endpoint for the get create the access token 
+app.post('/getToken', [], (req,res) => {
+    const {key} = req.body
+    const token = jwt.sign({key},'super-secret', {expiresIn : '24h'}) // Specificaly this method can create the JWT token
+    res.send({token})
+})
+
+// This method for verify the given access token
+
+async function auth(req,res,next) {
+    try{
+        const token = req.headers.authorization.replace('Bearer ', '')
+        await jwt.verify(token, 'super-secret') // Specificly this method can verifyt the access token should be correct or valid 
+        req.token = token
+        next() // This method process the all next process in well condition
+    }catch(err){
+        res.status(401).send({error : 'Please authenticate'})
+    }
+}
+```
+
+##### Get Call : 
+- A GET call in an API is a specific type of HTTP request method used to retrieve data from a server 
+- When you make a GET call, you are essentially asking the server for information. The server responds by sending back the requested data in the response body.
+- The data format can vary depending on the API, but common formats include JSON and XML ( Extensible Markup Language )
+
+Components to use - 
+- BaseURL - Resource + Query and / or Path Parameter
+- Header ( if required ie. Content-Type, Authorization ) 
+
+4 Ways to provide baseURL
+- With HTTP method
+- By using request context in Test block
+- By using request context in with beforeAll
+- In Playwright.config.file
+- In .env file 
+
+Ex,
+
+```TS
+import { test, request } from "@playwright/test";
+
+test.describe("API testing", async () => {
+  let reqContext2;
+  test.beforeAll("Before All", async () => {
+    reqContext2 = await request.newContext({
+      baseURL: "http://localhost:3000",
+    });
+  });
+
+  test("API request GET practice", async ({ request }) => {
+    const res = await request.get("http://localhost:3000/studData"); // This is the 1st method the fire the api request with base URL
+    console.log(await res.json());
+  });
+
+  test("API call", async () => {
+    const reqContext = await request.newContext({
+      // This is method 2nd to fire request with base URL separeted
+      baseURL: "http://localhost:3000",
+      extraHTTPHeaders : {
+        'Content-Type' : 'application/json'
+      }
+    });
+    
+    const res1 = await reqContext.get("/studData");
+    console.log(await res1.json());
+  });
+  
+  test("API request GET practice 3", async () => {
+    const res = await reqContext2.get("http://localhost:3000/studData"); // This is the 3rd method to call the api wiht the store the base URL into the beforeAll hooks
+    console.log(await res.json());
+  });
+  test("API request GET practice 4", async ({ request }) => {
+    const res = await request.get(`${process.env.API_BASE_URL}/studData`,{
+      headers : {
+      'Content-Type' : 'application/json' // This is optional
+      }
+    }); // This is the 4th method to call the api with store the base URL into the .env file
+    console.log(await res.json());
+  });
+});
+```
+
+##### If we want the sent the query parameters values then we use params : { } syntax
+
+Ex,
+
+```TS
+test('API', async ({request}) => {
+	const rs = await request.get('http://localhost:3000/records', {
+		params : { // This is the main step
+			fname : "Shubh",
+			lname : "Randive"
+		}
+	})
+})
+```
+
+
+##### For assertion we can use the `expect()` method 
+Ex,
+
+```TS
+test('Make get call with payload', async ({request}) =>{
+        const rs = await request.get('http://localhost:3000/studDataOnId/43')
+        await expect(rs.status()).toBe(200) // Checks the status
+        await expect(rs.ok()).toBeTruthy() // Checks the status code
+        const jsonRes = await rs.json();
+        expect(jsonRes.studData[0].fname).toEqual('teststudent1') // Checks the specific field
+        console.log(await rs.json())
+    })
+```
+##### NOTE : Demo API Web - restful-booker.herokuapp.com/apidoc/index.html
+
+  `The curl command also used for make the API call with the help of the cammand line interface ( CLI )`
+
+```
+curl -i https://restful-booker.herokuapp.com/booking
+```
 
