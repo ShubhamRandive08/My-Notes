@@ -1,4 +1,4 @@
-- API stands for application programming interface
+- [API](RESTFUL_API) stands for application programming interface
 - It is a set of rules and protocols that defines how 2 software programs or systems can communicate with each other.
 - API acts as intermediary between 2 systems allows them to exchange data and functionality.
 
@@ -130,6 +130,9 @@ async function auth(req,res,next) {
 }
 ```
 
+
+#### Note : Firstly we also check the API with API testing tools like Postman, Bruno, ThunderClient extension.
+
 ##### Get Call : 
 - A GET call in an API is a specific type of HTTP request method used to retrieve data from a server 
 - When you make a GET call, you are essentially asking the server for information. The server responds by sending back the requested data in the response body.
@@ -229,3 +232,69 @@ test('Make get call with payload', async ({request}) =>{
 curl -i https://restful-booker.herokuapp.com/booking
 ```
 
+
+#### POST Call :
+- A POST call in an API refers to a specific type of HTTP request method used to send data to a server.
+- POST requests are primarily used to create or update data on the server.
+- When you make a POST call, you send data along with the request body. This data is usually formatted in a structured way, such as JSON or XML ( Extensible Markup Language )
+
+###### Components to use :
+- BaseURL + Resource
+- Header ( if required )
+- Body ( data )
+
+##### In playwright, making the POST call we need to pass the payload we use `data` key for passing the payload to the URL.
+
+Ex,
+
+```TS
+test('API', async ({request}) => {
+	await request.post('http://localhost:3000/insertStaff, {
+		data : { // This is the main step for making the post call
+			"tname" : "shubh",
+			"email" : "shubh@gmail.com",
+			"username" : "shubh1617",
+			"password" : "abc@03"
+		}
+	})
+})
+```
+
+Playwright example 
+Ex,
+```TS
+// Write the test case for the make a post call
+import {test, expect} from '@playwright/test'
+
+import { request } from 'http'
+test.describe('API testing', async () =>{
+
+    test('POST method in Playwright', async ({request}) =>{
+        const rs  = await request.post('http://localhost:3000/insertStaff', {
+            data : {
+                "tname": "test",
+                "email": "test3@gmail.com",
+                "username": "test",
+                "password": "test"
+            }
+        })
+        const jsonRes = await rs.json();
+        console.log(jsonRes)
+    })
+})
+```
+
+
+
+
+
+
+---
+ⓘ Metadata <br>
+---
+Title: My Note<br>
+Tags:   #apiTesting #notes  #TypeScript<br>
+
+Author : Shubham Randive<br>
+
+---
