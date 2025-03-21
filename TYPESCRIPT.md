@@ -469,7 +469,7 @@ interface B {
 	propB : number;
 }
 
-type Combine : A $ B ;
+type Combine : A & B ;
 
 const example : Combine = {
 	propA : "Hellow",
@@ -478,3 +478,38 @@ const example : Combine = {
 
 console.log(example)
 ```
+
+#### Extends interface
+
+We also use the `extends` keyword for the use the feature of the previous interface and implements it into the next interface.
+
+```TS
+interface Book {
+	name : string;
+	price : number;
+}
+
+interface EBook extends Book {
+	// name : string;
+	// price : number;
+	fileSize : number;
+	format : string;
+}
+
+interface AudioBook extends EBook {
+	// name : string;
+	// price : number;
+	// fileSize : number;
+	// format : string;
+	duration: number;
+}
+
+const book : AudioBook = {
+	name : 'Atomic habits',
+	price : 1200,
+	fileSize : 300,
+	format : 'pdf',
+	duration : 4,
+}
+```
+
