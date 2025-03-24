@@ -513,3 +513,36 @@ const book : AudioBook = {
 }
 ```
 
+
+##### Merging interface :
+- If you provide same name to different interface then TypeScript can relise it is same in merging both as a same or one.
+
+```TS
+interface Book {
+	name : string;
+	price : number;
+}
+
+interface Boook {
+	size : number
+}
+
+const book : Book = {
+	name : 'Yayati',
+	price : 1200,
+	size : 300
+}
+
+console.log(book)
+```
+
+##### NOTE : In between `type` and `interface`, the interface is also good for use because of resone, merging can support only the interface.  It doesn't support to type. 
+
+#####  And if i want to create the primitive type then we should be use the `type` method because of interface can't able to make primitive data type.
+
+Ex, 
+```TS
+	type SanitizedString = string;
+```
+
+
